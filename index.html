@@ -226,9 +226,7 @@ footer p{color:#475569;font-size:.82rem;}
   .btn-w:hover{background:rgba(255,255,255,.22);}
 }
 
-/* STAIRCASE */
 .stair{background:linear-gradient(160deg,#0a0a1a 0%,#1E2E5C 60%,#4B1A8A 100%);padding:5rem 1.25rem;position:relative;overflow:hidden;}
-.stair::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 80% 20%,rgba(147,51,234,.15),transparent 60%);pointer-events:none;}
 .stair-inner{max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:2.5rem;}
 .stair-text{text-align:center;}
 .stair-title{font-family:"Sora",sans-serif;font-size:2rem;font-weight:800;color:#fff;line-height:1.2;margin:.75rem 0;}
@@ -240,15 +238,30 @@ footer p{color:#475569;font-size:.82rem;}
 .stair-cta{display:flex;flex-direction:column;align-items:center;gap:.5rem;}
 .stair-brand{font-family:"Sora",sans-serif;font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,#FCD34D,#D97706);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .stair-punch{color:#fff;font-size:1.15rem;font-weight:600;letter-spacing:.02em;}
-@media(min-width:640px){.stair{padding:6rem 2rem;}.stair-title{font-size:2.8rem;}.stair-sub{font-size:1.05rem;}}
-@media(min-width:1024px){.stair{padding:8rem 4rem;}.stair-title{font-size:3.5rem;}}
+
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:#fff;border-radius:18px;padding:2rem;max-width:480px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.25);position:relative;}
+.modal-box h3{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:700;color:#1E2E5C;margin-bottom:.5rem;}
+.modal-box p{color:#555;font-size:.9rem;margin-bottom:1.5rem;}
+.modal-box label{display:block;font-size:.85rem;font-weight:600;color:#333;margin-bottom:.3rem;}
+.modal-box input,.modal-box textarea{width:100%;padding:.7rem 1rem;border:2px solid #e2e8f0;border-radius:8px;font-size:.95rem;margin-bottom:1rem;box-sizing:border-box;font-family:inherit;}
+.modal-box input:focus,.modal-box textarea:focus{outline:none;border-color:#6B21A8;}
+.modal-box textarea{resize:none;height:90px;}
+.modal-close{position:absolute;top:1rem;right:1.2rem;font-size:1.5rem;cursor:pointer;color:#888;background:none;border:none;}
+.modal-submit{width:100%;padding:.85rem;background:linear-gradient(135deg,#6B21A8,#4F46E5);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;}
+.modal-submit:hover{opacity:.9;}
+.modal-success{text-align:center;padding:1rem 0;}
+.modal-success .check{font-size:3rem;margin-bottom:.5rem;}
+.modal-success h4{color:#1E2E5C;font-size:1.2rem;font-weight:700;margin-bottom:.5rem;}
+.modal-success p{color:#555;font-size:.9rem;}
 </style>
 </head>
 <body>
 
 <nav>
   <a href="#" class="logo">
-    <svg viewBox="0 0 440 220" fill="none">
+    <svg viewBox="0 0 36 36" fill="none">
       <circle cx="6" cy="18" r="5" fill="#9333EA"/>
       <circle cx="30" cy="6" r="5" fill="#9333EA"/>
       <circle cx="30" cy="30" r="5" fill="#9333EA"/>
@@ -271,7 +284,7 @@ footer p{color:#475569;font-size:.82rem;}
   <h1>Turn Every Work<br>Experience into<br><span>Collective Intelligence</span></h1>
   <p>Capture, structure, and share work experiences across your organization. Stop repeating mistakes. Start accelerating learning.</p>
   <div class="btns">
-    <a href="#cta" class="btn-y">Request a Demo</a>
+    <button onclick="openDemoModal()" class="btn-y" style="border:none;cursor:pointer;font-family:inherit;">Request a Demo</button>
     <a href="#solution" class="btn-w">See How It Works</a>
   </div>
   <div class="tagline">Real problems. Real actions. Real results.</div>
@@ -413,12 +426,13 @@ footer p{color:#475569;font-size:.82rem;}
         <tr class="pilot"><td><strong>Up to 50</strong></td><td>$K</td><td>$$K</td><td>$</td></tr>
         <tr><td>50 – 200</td><td>$K</td><td>$$$K</td><td>$$$</td></tr>
         <tr><td>200 – 1,000</td><td>$$K</td><td>$$$$K</td><td>$$</td></tr>
-        <tr><td>1,000 – 5,000</td><td>$$$K</td><td>$$$$$K</td><td>$</td></tr>
+        <tr><td>1,000 – 5,000</td><td>$$$K</td><td>$$$$$K</td><td>$50</td></tr>
         <tr><td>5,000+</td><td>Custom</td><td>Custom</td><td>Custom</td></tr>
       </tbody>
     </table>
   </div>
   <p class="pnote rv">** Starter: standard setup, default cloud, 1 training session. Professional: dedicated cloud (Google/AWS/Azure), data migration, multiple training sessions.</p>
+  <p class="pnote rv">** Implementation fee includes cloud setup if required.</p>
   <p class="pnote rv">** Implementation fee includes cloud setup if required.</p>
 </section>
 
@@ -443,118 +457,47 @@ footer p{color:#475569;font-size:.82rem;}
       <h2 class="stair-title">Think of intelligence<br>as a staircase.</h2>
       <p class="stair-sub">Each step, a piece of knowledge.<br>Intelligence requires knowledge — accumulated over time.</p>
     </div>
-
-    <!-- SVG Staircase - 5 clean steps -->
     <div class="stair-svg-wrap rv">
       <svg viewBox="0 0 440 220" xmlns="http://www.w3.org/2000/svg" class="stair-svg">
         <defs>
-          <linearGradient id="s1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#7C3AED"/>
-            <stop offset="100%" style="stop-color:#5B21B6"/>
-          </linearGradient>
-          <linearGradient id="s2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#7C3AED"/>
-            <stop offset="100%" style="stop-color:#4F46E5"/>
-          </linearGradient>
-          <linearGradient id="s3" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#6366F1"/>
-            <stop offset="100%" style="stop-color:#2563EB"/>
-          </linearGradient>
-          <linearGradient id="s4" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#3B82F6"/>
-            <stop offset="100%" style="stop-color:#1D4ED8"/>
-          </linearGradient>
-          <linearGradient id="s5" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#D97706"/>
-            <stop offset="100%" style="stop-color:#FCD34D"/>
-          </linearGradient>
+          <linearGradient id="s1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#7C3AED"/><stop offset="100%" style="stop-color:#5B21B6"/></linearGradient>
+          <linearGradient id="s2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#7C3AED"/><stop offset="100%" style="stop-color:#4F46E5"/></linearGradient>
+          <linearGradient id="s3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6366F1"/><stop offset="100%" style="stop-color:#2563EB"/></linearGradient>
+          <linearGradient id="s4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#3B82F6"/><stop offset="100%" style="stop-color:#1D4ED8"/></linearGradient>
+          <linearGradient id="s5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#D97706"/><stop offset="100%" style="stop-color:#FCD34D"/></linearGradient>
         </defs>
-
-        <rect x="340" y="10" width="76" height="36" rx="5" fill="url(#s5)"/>
-        <text x="378" y="32" text-anchor="middle" fill="rgba(30,46,92,0.4)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="260" y="50" width="76" height="36" rx="5" fill="url(#s4)"/>
-        <text x="298" y="72" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="340" y="50" width="76" height="36" rx="5" fill="url(#s4)"/>
-        <rect x="180" y="90" width="76" height="36" rx="5" fill="url(#s3)"/>
-        <text x="218" y="112" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="260" y="90" width="76" height="36" rx="5" fill="url(#s3)"/>
-        <rect x="340" y="90" width="76" height="36" rx="5" fill="url(#s3)"/>
-        <rect x="100" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <text x="138" y="152" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="180" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <rect x="260" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <rect x="340" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <rect x="340" y="10" width="76" height="36" rx="5" fill="url(#s5)"/>
-        <rect x="260" y="50" width="76" height="36" rx="5" fill="url(#s4)"/>
-        <rect x="340" y="50" width="76" height="36" rx="5" fill="url(#s4)"/>
-        <text x="378" y="72" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="180" y="90" width="76" height="36" rx="5" fill="url(#s3)"/>
-        <rect x="260" y="90" width="76" height="36" rx="5" fill="url(#s3)"/>
-        <text x="298" y="112" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="340" y="90" width="76" height="36" rx="5" fill="url(#s3)"/>
-        <text x="378" y="112" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="100" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <rect x="180" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <text x="218" y="152" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="260" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <text x="298" y="152" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="340" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <text x="378" y="152" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="340" y="10" width="76" height="36" rx="5" fill="url(#s5)"/>
         <text x="378" y="32" text-anchor="middle" fill="rgba(30,46,92,0.25)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="260" y="50" width="76" height="36" rx="5" fill="url(#s4)"/>
         <text x="298" y="72" text-anchor="middle" fill="rgba(255,255,255,0.12)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="340" y="50" width="76" height="36" rx="5" fill="url(#s4)"/>
-        <text x="378" y="72" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
+        <text x="378" y="72" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="180" y="90" width="76" height="36" rx="5" fill="url(#s3)"/>
         <text x="218" y="112" text-anchor="middle" fill="rgba(255,255,255,0.12)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="260" y="90" width="76" height="36" rx="5" fill="url(#s3)"/>
-        <text x="298" y="112" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
+        <text x="298" y="112" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="340" y="90" width="76" height="36" rx="5" fill="url(#s3)"/>
-        <text x="378" y="112" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
+        <text x="378" y="112" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="100" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
         <text x="138" y="152" text-anchor="middle" fill="rgba(255,255,255,0.12)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="180" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <text x="218" y="152" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
+        <text x="218" y="152" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="260" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <text x="298" y="152" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
+        <text x="298" y="152" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="340" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <text x="378" y="152" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="340" y="10" width="76" height="36" rx="5" fill="url(#s5)"/>
-        <text x="378" y="32" text-anchor="middle" fill="rgba(30,46,92,0.5)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="260" y="50" width="76" height="36" rx="5" fill="url(#s4)"/>
-        <text x="298" y="72" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="340" y="50" width="76" height="36" rx="5" fill="url(#s4)"/>
-        <text x="378" y="72" text-anchor="middle" fill="rgba(255,255,255,0.1)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="180" y="90" width="76" height="36" rx="5" fill="url(#s3)"/>
-        <text x="218" y="112" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="260" y="90" width="76" height="36" rx="5" fill="url(#s3)"/>
-        <text x="298" y="112" text-anchor="middle" fill="rgba(255,255,255,0.1)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="340" y="90" width="76" height="36" rx="5" fill="url(#s3)"/>
-        <text x="378" y="112" text-anchor="middle" fill="rgba(255,255,255,0.1)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="100" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <text x="138" y="152" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="180" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <text x="218" y="152" text-anchor="middle" fill="rgba(255,255,255,0.1)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="260" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <text x="298" y="152" text-anchor="middle" fill="rgba(255,255,255,0.1)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-        <rect x="340" y="130" width="76" height="36" rx="5" fill="url(#s2)"/>
-        <text x="378" y="152" text-anchor="middle" fill="rgba(255,255,255,0.1)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
+        <text x="378" y="152" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="20" y="170" width="76" height="36" rx="5" fill="url(#s1)"/>
-        <text x="58" y="192" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
+        <text x="58" y="192" text-anchor="middle" fill="rgba(255,255,255,0.12)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="100" y="170" width="76" height="36" rx="5" fill="url(#s1)"/>
-        <text x="138" y="192" text-anchor="middle" fill="rgba(255,255,255,0.1)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
+        <text x="138" y="192" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="180" y="170" width="76" height="36" rx="5" fill="url(#s1)"/>
-        <text x="218" y="192" text-anchor="middle" fill="rgba(255,255,255,0.1)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
+        <text x="218" y="192" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="260" y="170" width="76" height="36" rx="5" fill="url(#s1)"/>
-        <text x="298" y="192" text-anchor="middle" fill="rgba(255,255,255,0.1)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
+        <text x="298" y="192" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
         <rect x="340" y="170" width="76" height="36" rx="5" fill="url(#s1)"/>
-        <text x="378" y="192" text-anchor="middle" fill="rgba(255,255,255,0.1)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
-      
+        <text x="378" y="192" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="9" font-family="Sora,sans-serif" font-weight="700" letter-spacing="1">WhatIDid</text>
       </svg>
     </div>
-
-    <!-- Bottom text -->
     <div class="stair-bottom rv">
       <p class="stair-lose">Lose a step — and you can't reach the next.</p>
       <div class="stair-cta">
@@ -568,12 +511,12 @@ footer p{color:#475569;font-size:.82rem;}
 <section class="cta" id="cta">
   <h2 class="rv">Imagine an organization where every solved problem strengthens collective intelligence.</h2>
   <p class="rv">Where knowledge never gets lost.</p>
-  <a href="mailto:whatidid.app@outlook.com" class="btn-y rv">Request a Demo</a>
+  <button onclick="openDemoModal()" class="btn-y rv" style="border:none;cursor:pointer;font-family:inherit;">Request a Demo</button>
 </section>
 
 <footer>
   <div class="brand">
-    <svg width="22" height="22" viewBox="0 0 440 220" fill="none">
+    <svg width="22" height="22" viewBox="0 0 36 36" fill="none">
       <circle cx="6" cy="18" r="5" fill="#9333EA"/>
       <circle cx="30" cy="6" r="5" fill="#9333EA"/>
       <circle cx="30" cy="30" r="5" fill="#9333EA"/>
@@ -586,7 +529,7 @@ footer p{color:#475569;font-size:.82rem;}
   <p>Real problems. Real actions. Real results.</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // On desktop only: animate reveals
 if(window.innerWidth >= 1024) {
   document.querySelectorAll(".rv").forEach(el => {
@@ -602,4 +545,53 @@ if(window.innerWidth >= 1024) {
           e.target.style.transform="translateY(0)";
         }, i*60);
         obs.unobserve(e.target);
-      
+      }
+    });
+  },{threshold:.08,rootMargin:"0px 0px -40px 0px"});
+  document.querySelectorAll(".rv").forEach(el=>obs.observe(el));
+}
+</script>
+
+<div class="modal-overlay" id="demoModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeDemoModal()">×</button>
+    <h3>Request a Demo</h3>
+    <p>Fill in your details and we'll get back to you within 24 hours.</p>
+    <div id="modalForm">
+      <form id="demoForm" action="https://formspree.io/f/xeevdaeo" method="POST" onsubmit="submitDemoForm(event)">
+        <label>Full Name *</label>
+        <input type="text" name="name" required placeholder="Your name" />
+        <label>Work Email *</label>
+        <input type="email" name="email" required placeholder="you@company.com" />
+        <label>Company *</label>
+        <input type="text" name="company" required placeholder="Company name" />
+        <label>Message (optional)</label>
+        <textarea name="message" placeholder="Tell us about your needs..."></textarea>
+        <button type="submit" class="modal-submit">Send Request</button>
+      </form>
+    </div>
+    <div id="modalSuccess" class="modal-success" style="display:none;">
+      <div class="check">✅</div>
+      <h4>Request Sent!</h4>
+      <p>We'll be in touch within 24 hours.</p>
+    </div>
+  </div>
+</div>
+<script>
+function openDemoModal(){ document.getElementById('demoModal').classList.add('open'); }
+function closeDemoModal(){ document.getElementById('demoModal').classList.remove('open'); document.getElementById('modalForm').style.display='block'; document.getElementById('modalSuccess').style.display='none'; }
+document.getElementById('demoModal').addEventListener('click', function(e){ if(e.target===this) closeDemoModal(); });
+async function submitDemoForm(e){
+  e.preventDefault();
+  var form=document.getElementById('demoForm');
+  var btn=form.querySelector('button[type=submit]');
+  btn.textContent='Sending...'; btn.disabled=true;
+  try {
+    var res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+    if(res.ok){ document.getElementById('modalForm').style.display='none'; document.getElementById('modalSuccess').style.display='block'; }
+    else { btn.textContent='Send Request'; btn.disabled=false; alert('Something went wrong. Please try again.'); }
+  } catch(err){ btn.textContent='Send Request'; btn.disabled=false; alert('Something went wrong. Please try again.'); }
+}
+</script>
+</body>
+</html>
