@@ -255,6 +255,16 @@ footer p{color:#475569;font-size:.82rem;}
 .modal-success .check{font-size:3rem;margin-bottom:.5rem;}
 .modal-success h4{color:#1E2E5C;font-size:1.2rem;font-weight:700;margin-bottom:.5rem;}
 .modal-success p{color:#555;font-size:.9rem;}
+
+.device-line{font-size:.9rem;color:rgba(255,255,255,.7);margin-top:.5rem;letter-spacing:.05em;}
+.video-promo{background:#0f172a;padding:5rem 1.25rem;}
+.vp-inner{max-width:860px;margin:0 auto;text-align:center;}
+.vp-title{font-family:"Sora",sans-serif;font-size:2rem;font-weight:800;color:#fff;margin:.75rem 0;}
+.vp-sub{color:#94a3b8;font-size:1rem;margin-bottom:2rem;}
+.vp-player{border-radius:16px;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.5);}
+.vp-video{width:100%;display:block;background:#000;max-height:360px;object-fit:contain;}
+.vp-player{max-width:640px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.5);}
+@media(min-width:640px){.vp-title{font-size:2.5rem;}.video-promo{padding:6rem 2rem;}}
 </style>
 </head>
 <body>
@@ -288,6 +298,20 @@ footer p{color:#475569;font-size:.82rem;}
     <a href="#solution" class="btn-w">See How It Works</a>
   </div>
   <div class="tagline">Real problems. Real actions. Real results.</div>
+</section>
+
+<section class="sec video-promo" id="see-it">
+  <div class="vp-inner rv">
+    <span class="lbl">See It In Action</span>
+    <h2 class="vp-title">Watch WhatIDid in Action</h2>
+    <p class="vp-sub">See how teams capture, share and learn from real work experiences.</p>
+    <div class="vp-player">
+      <video controls preload="metadata" class="vp-video">
+        <source src="https://scurkpoasiulwkmmechz.supabase.co/storage/v1/object/public/promotional-videos/video-1776905485495.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
 </section>
 
 <section class="sec prob" id="problem">
@@ -360,6 +384,7 @@ footer p{color:#475569;font-size:.82rem;}
   <h2 class="ttl rv">Everything your organization needs to learn at scale</h2>
   <p class="sub rv">WhatIDid is designed for how organizations actually work — across teams, departments, and geographies.</p>
   <div class="fgrid">
+    <div class="fb rv"><div class="fi" style="background:#ede9fe">💻</div><div><h4>Desktop & Mobile</h4><p>Access WhatIDid from any device — desktop, tablet, or smartphone. No app download required.</p></div></div>
     <div class="fb rv"><div class="fi" style="background:#f5f3ff">🔍</div><div><h4>Smart Search & Filtering</h4><p>Find relevant experiences by category, result type, or keyword.</p></div></div>
     <div class="fb rv"><div class="fi" style="background:#f0fff4">🎯</div><div><h4>Key Insights (Common Cases)</h4><p>Curated patterns that emerge from recurring experiences — surfacing what works across the organization.</p></div></div>
     <div class="fb rv"><div class="fi" style="background:#fff7ed">⭐</div><div><h4>Rating & Engagement</h4><p>Peer ratings surface the most valuable experiences. Top experiences highlighted for everyone.</p></div></div>
