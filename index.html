@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WhatIDid Corp — Organizational Learning Platform</title>
+<title data-i18n="page_title">WhatIDid Corp — Organizational Learning Platform</title>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--pu:#9333EA;--bl:#2563EB;--bd:#1E2E5C;--ye:#D97706;--gr:#16A34A;--re:#DC2626;--tx:#1E293B;--mu:#64748B;}
@@ -15,7 +15,7 @@ a{text-decoration:none;}
 img{max-width:100%;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.25rem;background:rgba(10,10,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(147,51,234,.2);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.25rem;background:rgba(10,10,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(147,51,234,.2);gap:.75rem;}
 .logo{display:flex;align-items:center;gap:.5rem;}
 .logo svg{width:24px;height:24px;flex-shrink:0;}
 .logo-text{font-family:"Sora",sans-serif;font-weight:700;font-size:1rem;color:#fff;}
@@ -23,7 +23,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-links{display:none;list-style:none;gap:1.5rem;}
 .nav-links a{color:#c4b5fd;font-size:.88rem;font-weight:500;}
 .nav-links a:hover{color:#fff;}
-.nav-btn{background:var(--pu);color:#fff;padding:.5rem .9rem;border-radius:8px;font-weight:600;font-size:.82rem;}
+.nav-right{display:flex;align-items:center;gap:.6rem;}
+.lang-select{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:.4rem .5rem;font-size:.78rem;font-family:inherit;cursor:pointer;}
+.lang-select option{background:#1E2E5C;color:#fff;}
+.nav-btn{background:var(--pu);color:#fff;padding:.5rem .9rem;border-radius:8px;font-weight:600;font-size:.82rem;white-space:nowrap;}
 
 /* HERO */
 .hero{min-height:100vh;background:linear-gradient(135deg,#4B1A8A,#2563EB);display:flex;flex-direction:column;justify-content:center;padding:7rem 1.25rem 5rem;position:relative;overflow:hidden;}
@@ -169,7 +172,6 @@ footer p{color:#475569;font-size:.82rem;}
 /* REVEAL */
 .rv{opacity:1;transform:none;transition:opacity .5s ease,transform .5s ease;}
 .rv.on{opacity:1;transform:translateY(0);}
-/* Fallback: show everything if JS hasn't run after 1s */
 @media(max-width:1024px){.rv{opacity:1;transform:none;transition:none;}}
 
 /* TABLET */
@@ -205,7 +207,6 @@ footer p{color:#475569;font-size:.82rem;}
   .formula{font-size:1.15rem;padding:1.5rem 2.5rem;}
   h2.ttl{font-size:2.4rem;}
   .cta h2{font-size:2.8rem;}
-  /* Enhanced card styles for desktop */
   .card{box-shadow:0 4px 20px rgba(147,51,234,.08);transition:box-shadow .2s,transform .2s;}
   .card:hover{box-shadow:0 8px 32px rgba(147,51,234,.15);transform:translateY(-2px);}
   .scard{transition:background .2s,transform .2s;}
@@ -218,7 +219,6 @@ footer p{color:#475569;font-size:.82rem;}
   .dc:hover{transform:translateY(-4px);}
   .im{transition:transform .2s;}
   .im:hover{transform:translateY(-3px);}
-  /* Better hero */
   .hero::before{content:"";position:absolute;bottom:-15%;left:-5%;width:400px;height:400px;background:radial-gradient(circle,rgba(37,99,235,.3),transparent 70%);border-radius:50%;pointer-events:none;}
   .btn-y{box-shadow:0 8px 24px rgba(217,119,6,.4);transition:all .2s;}
   .btn-y:hover{background:#b45309;transform:translateY(-2px);}
@@ -264,6 +264,8 @@ footer p{color:#475569;font-size:.82rem;}
 .vp-player{border-radius:16px;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.5);}
 .vp-video{width:100%;display:block;background:#000;max-height:360px;object-fit:contain;}
 .vp-player{max-width:640px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.5);}
+.vp-lang-row{display:flex;align-items:center;justify-content:center;gap:.6rem;margin:1.25rem auto 0 auto;max-width:640px;flex-wrap:wrap;color:#94a3b8;font-size:.82rem;}
+.vp-lang-row .lang-select{background:rgba(255,255,255,.08);}
 @media(min-width:640px){.vp-title{font-size:2.5rem;}.video-promo{padding:6rem 2rem;}}
 </style>
 </head>
@@ -281,197 +283,215 @@ footer p{color:#475569;font-size:.82rem;}
     <span class="logo-text">WhatIDid <span class="logo-sub">Corp</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="#problem">The Problem</a></li>
-    <li><a href="#solution">Solution</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="https://portal.whatidid.app" target="_blank">Portal</a></li>
+    <li><a href="#problem" data-i18n="nav_problem">The Problem</a></li>
+    <li><a href="#solution" data-i18n="nav_solution">Solution</a></li>
+    <li><a href="#features" data-i18n="nav_features">Features</a></li>
+    <li><a href="#pricing" data-i18n="nav_pricing">Pricing</a></li>
+    <li><a href="https://portal.whatidid.app" target="_blank" data-i18n="nav_portal">Portal</a></li>
   </ul>
-  <a href="#cta" class="nav-btn">Request Demo</a>
+  <div class="nav-right">
+    <select class="lang-select" id="langSelect" onchange="setLang(this.value)">
+      <option value="en">EN</option>
+      <option value="es">ES</option>
+      <option value="pt">PT</option>
+      <option value="zh">中文</option>
+    </select>
+    <a href="#cta" class="nav-btn" data-i18n="nav_demo">Request Demo</a>
+  </div>
 </nav>
 
 <section class="hero" id="home">
-  <div class="badge">🏢 Enterprise Organizational Learning</div>
-  <h1>Turn Every Work<br>Experience into<br><span>Collective Intelligence</span></h1>
-  <p>Capture, structure, and share work experiences across your organization. Stop repeating mistakes. Start accelerating learning.</p>
+  <div class="badge" data-i18n="hero_badge">🏢 Enterprise Organizational Learning</div>
+  <h1><span data-i18n="hero_h1_l1">Turn Every Work</span><br><span data-i18n="hero_h1_l2">Experience into</span><br><span data-i18n="hero_h1_span">Collective Intelligence</span></h1>
+  <p data-i18n="hero_p">Capture, structure, and share work experiences across your organization. Stop repeating mistakes. Start accelerating learning.</p>
   <div class="btns">
-    <button onclick="openDemoModal()" class="btn-y" style="border:none;cursor:pointer;font-family:inherit;">Request a Demo</button>
-    <a href="#solution" class="btn-w">See How It Works</a>
+    <button onclick="openDemoModal()" class="btn-y" style="border:none;cursor:pointer;font-family:inherit;" data-i18n="hero_btn_demo">Request a Demo</button>
+    <a href="#solution" class="btn-w" data-i18n="hero_btn_how">See How It Works</a>
   </div>
-  <div class="tagline">Real problems. Real actions. Real results.</div>
+  <div class="tagline" data-i18n="hero_tagline">Real problems. Real actions. Real results.</div>
 </section>
 
 <section class="sec video-promo" id="see-it">
   <div class="vp-inner rv">
-    <span class="lbl">See It In Action</span>
-    <h2 class="vp-title">Watch WhatIDid in Action</h2>
-    <p class="vp-sub">See how teams capture, share and learn from real work experiences.</p>
+    <span class="lbl" data-i18n="vp_lbl">See It In Action</span>
+    <h2 class="vp-title" data-i18n="vp_title">Watch WhatIDid in Action</h2>
+    <p class="vp-sub" data-i18n="vp_sub">See how teams capture, share and learn from real work experiences.</p>
     <div class="vp-player">
-      <video controls preload="metadata" class="vp-video">
-        <source src="https://scurkpoasiulwkmmechz.supabase.co/storage/v1/object/public/promotional-videos/video-1776905485495.mp4" type="video/mp4" />
+      <video controls preload="metadata" class="vp-video" id="promoVideo">
+        <source src="https://scurkpoasiulwkmmechz.supabase.co/storage/v1/object/public/promotional-videos/video-1776905485495.mp4" type="video/mp4" id="promoVideoSource" />
         Your browser does not support the video tag.
       </video>
+    </div>
+    <div class="vp-lang-row">
+      <span id="videoAiNote" data-i18n="video_ai_note">🤖 AI-translated audio — optional</span>
+      <select id="videoLangSelect" class="lang-select" onchange="setVideoLang(this.value)">
+        <option value="en">English (original)</option>
+        <option value="es">Español (AI)</option>
+        <option value="pt">Português (AI)</option>
+        <option value="zh">中文 (AI)</option>
+      </select>
     </div>
   </div>
 </section>
 
 <section class="sec prob" id="problem">
-  <span class="lbl rv">The Problem</span>
-  <h2 class="ttl rv">There's a gap between what individuals learn and what organizations embed.</h2>
-  <p class="sub rv">Countless day-to-day problems are dealt with — but not always systematically learned from.</p>
+  <span class="lbl rv" data-i18n="prob_lbl">The Problem</span>
+  <h2 class="ttl rv" data-i18n="prob_ttl">There's a gap between what individuals learn and what organizations embed.</h2>
+  <p class="sub rv" data-i18n="prob_sub">Countless day-to-day problems are dealt with — but not always systematically learned from.</p>
   <div class="grid-2">
-    <div class="card bl rv"><div style="font-family:'Sora',sans-serif;font-weight:800;font-size:1rem;color:#2563EB;margin-bottom:.3rem">01</div><h4>Employees encounter problems that may recur across individuals, related to:</h4><ul><li>Project management</li><li>Operations</li><li>Customer service</li><li>Internal processes</li></ul></div>
-    <div class="card ye rv"><div style="font-family:'Sora',sans-serif;font-weight:800;font-size:1rem;color:#D97706;margin-bottom:.3rem">02</div><h4>Knowledge often remains siloed, including in employees' minds</h4><p>Most of it does not spread consistently across the organization.</p></div>
-    <div class="card nv rv"><div style="font-family:'Sora',sans-serif;font-weight:800;font-size:1rem;color:#FCD34D;margin-bottom:.3rem">03</div><h4>As a result:</h4><ul><li>Teams may at times repeat mistakes</li><li>Time may be spent rediscovering solutions to recurring problems</li><li>Valuable knowledge remains fragmented</li></ul><p style="margin-top:.75rem;font-size:.85rem;color:#FCD34D;font-style:italic;font-weight:600">And when employees eventually leave — the knowledge leaves with them.</p></div>
+    <div class="card bl rv"><div style="font-family:'Sora',sans-serif;font-weight:800;font-size:1rem;color:#2563EB;margin-bottom:.3rem">01</div><h4 data-i18n="prob_c1_h4">Employees encounter problems that may recur across individuals, related to:</h4><ul><li data-i18n="prob_c1_li1">Project management</li><li data-i18n="prob_c1_li2">Operations</li><li data-i18n="prob_c1_li3">Customer service</li><li data-i18n="prob_c1_li4">Internal processes</li></ul></div>
+    <div class="card ye rv"><div style="font-family:'Sora',sans-serif;font-weight:800;font-size:1rem;color:#D97706;margin-bottom:.3rem">02</div><h4 data-i18n="prob_c2_h4">Knowledge often remains siloed, including in employees' minds</h4><p data-i18n="prob_c2_p">Most of it does not spread consistently across the organization.</p></div>
+    <div class="card nv rv"><div style="font-family:'Sora',sans-serif;font-weight:800;font-size:1rem;color:#FCD34D;margin-bottom:.3rem">03</div><h4 data-i18n="prob_c3_h4">As a result:</h4><ul><li data-i18n="prob_c3_li1">Teams may at times repeat mistakes</li><li data-i18n="prob_c3_li2">Time may be spent rediscovering solutions to recurring problems</li><li data-i18n="prob_c3_li3">Valuable knowledge remains fragmented</li></ul><p style="margin-top:.75rem;font-size:.85rem;color:#FCD34D;font-style:italic;font-weight:600" data-i18n="prob_c3_p">And when employees eventually leave — the knowledge leaves with them.</p></div>
     <div class="card pu rv" style="border-color:#E9D5FF;">
       <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:1rem;color:#9333EA;margin-bottom:.3rem">04</div>
-      <h4 style="color:#9333EA;margin-bottom:.9rem">Why this happens</h4>
-      <!-- How stored -->
-      <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#9333EA;margin-bottom:.4rem">How experiences are stored</p>
+      <h4 style="color:#9333EA;margin-bottom:.9rem" data-i18n="prob_c4_h4">Why this happens</h4>
+      <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#9333EA;margin-bottom:.4rem" data-i18n="prob_c4_p1">How experiences are stored</p>
       <div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.85rem">
-        <span style="background:#FEE2E2;color:#DC2626;padding:.25rem .6rem;border-radius:100px;font-size:.75rem;font-weight:600;border:1px solid #FECACA">① Not recorded</span>
-        <span style="background:#EFF6FF;color:#1D4ED8;padding:.25rem .6rem;border-radius:100px;font-size:.75rem;font-weight:600;border:1px solid #BFDBFE">② Decentralized</span>
-        <span style="background:#EFF6FF;color:#1D4ED8;padding:.25rem .6rem;border-radius:100px;font-size:.75rem;font-weight:600;border:1px solid #BFDBFE">③ Free text</span>
-        <span style="background:#EFF6FF;color:#1D4ED8;padding:.25rem .6rem;border-radius:100px;font-size:.75rem;font-weight:600;border:1px solid #BFDBFE">④ Unstructured</span>
+        <span style="background:#FEE2E2;color:#DC2626;padding:.25rem .6rem;border-radius:100px;font-size:.75rem;font-weight:600;border:1px solid #FECACA" data-i18n="prob_badge1">① Not recorded</span>
+        <span style="background:#EFF6FF;color:#1D4ED8;padding:.25rem .6rem;border-radius:100px;font-size:.75rem;font-weight:600;border:1px solid #BFDBFE" data-i18n="prob_badge2">② Decentralized</span>
+        <span style="background:#EFF6FF;color:#1D4ED8;padding:.25rem .6rem;border-radius:100px;font-size:.75rem;font-weight:600;border:1px solid #BFDBFE" data-i18n="prob_badge3">③ Free text</span>
+        <span style="background:#EFF6FF;color:#1D4ED8;padding:.25rem .6rem;border-radius:100px;font-size:.75rem;font-weight:600;border:1px solid #BFDBFE" data-i18n="prob_badge4">④ Unstructured</span>
       </div>
-      <p style="font-size:.8rem;color:#94A3B8;margin-bottom:.85rem;line-height:1.5">Not broken down into <strong style="color:#64748B">problem</strong>, <strong style="color:#64748B">actions</strong>, and <strong style="color:#64748B">results</strong> (<strong style="color:#94A3B8">what worked</strong> and <strong style="color:#94A3B8">what didn't</strong>).</p>
-      <!-- Divider -->
+      <p style="font-size:.8rem;color:#94A3B8;margin-bottom:.85rem;line-height:1.5" data-i18n="prob_c4_p2">Not broken down into <strong style="color:#64748B">problem</strong>, <strong style="color:#64748B">actions</strong>, and <strong style="color:#64748B">results</strong> (<strong style="color:#94A3B8">what worked</strong> and <strong style="color:#94A3B8">what didn't</strong>).</p>
       <div style="border-top:1px dashed #E2E8F0;margin-bottom:.75rem"></div>
-      <!-- As a result -->
-      <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#DC2626;margin-bottom:.4rem">This makes them…</p>
+      <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#DC2626;margin-bottom:.4rem" data-i18n="prob_c4_p3">This makes them…</p>
       <div style="display:flex;flex-direction:column;gap:.35rem">
-          <div style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:#475569"><span style="width:7px;height:7px;border-radius:50%;background:#DC2626;flex-shrink:0;display:inline-block"></span>Difficult to search</div>
-          <div style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:#475569"><span style="width:7px;height:7px;border-radius:50%;background:#DC2626;flex-shrink:0;display:inline-block"></span>Difficult to turn into insights</div>
-          <div style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:#991B1B;font-weight:700"><span style="width:7px;height:7px;border-radius:50%;background:#DC2626;flex-shrink:0;display:inline-block"></span><span style="font-style:italic">Ineffective for organizational learning</span></div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:#475569"><span style="width:7px;height:7px;border-radius:50%;background:#DC2626;flex-shrink:0;display:inline-block"></span><span data-i18n="prob_item1">Difficult to search</span></div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:#475569"><span style="width:7px;height:7px;border-radius:50%;background:#DC2626;flex-shrink:0;display:inline-block"></span><span data-i18n="prob_item2">Difficult to turn into insights</span></div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:#991B1B;font-weight:700"><span style="width:7px;height:7px;border-radius:50%;background:#DC2626;flex-shrink:0;display:inline-block"></span><span style="font-style:italic" data-i18n="prob_item3">Ineffective for organizational learning</span></div>
       </div>
     </div>
   </div>
 
-    <div class="warn rv" style="grid-column:1/-1;background:#D97706;border-radius:12px;padding:1.1rem 1.5rem;text-align:center;font-weight:700;color:#ffffff !important;font-size:.95rem;font-style:italic;margin-top:2rem;display:block;">Organizations often lack an effective process to turn work experiences into learning — one that drives discipline and culture.</div>
+    <div class="warn rv" style="grid-column:1/-1;background:#D97706;border-radius:12px;padding:1.1rem 1.5rem;text-align:center;font-weight:700;color:#ffffff !important;font-size:.95rem;font-style:italic;margin-top:2rem;display:block;" data-i18n="prob_warn">Organizations often lack an effective process to turn work experiences into learning — one that drives discipline and culture.</div>
 </section>
 
 <section class="sec sol" id="solution">
-  <span class="lbl inv rv">The Solution</span>
-  <h2 class="ttl wh rv">WhatIDid — A platform designed to capture and structure work experiences</h2>
-  <p class="sub wh rv">Using a simple, universal format that any employee can follow.</p>
-  <div class="formula rv">Work Experience =<br>Problem → Action → Result<br>(Worked, No Change, Got Worse)</div>
+  <span class="lbl inv rv" data-i18n="sol_lbl">The Solution</span>
+  <h2 class="ttl wh rv" data-i18n="sol_ttl">WhatIDid — A platform designed to capture and structure work experiences</h2>
+  <p class="sub wh rv" data-i18n="sol_sub">Using a simple, universal format that any employee can follow.</p>
+  <div class="formula rv" data-i18n="sol_formula">Work Experience =<br>Problem → Action → Result<br>(Worked, No Change, Got Worse)</div>
   <div class="grid-3">
-    <div class="scard rv"><div class="ic" style="background:rgba(147,51,234,.3)">🔴</div><h3>Problem</h3><p>Describe the operational problem or challenge faced in a clear, structured way.</p></div>
-    <div class="scard rv"><div class="ic" style="background:rgba(37,99,235,.3)">⚡</div><h3>Action</h3><p>What was done to address the problem — the specific steps and decisions taken.</p></div>
-    <div class="scard rv"><div class="ic" style="background:rgba(22,163,74,.3)">✅</div><h3>Result</h3><p>What happened — whether it worked, made no change, or made things worse.</p></div>
+    <div class="scard rv"><div class="ic" style="background:rgba(147,51,234,.3)">🔴</div><h3 data-i18n="sol_s1_h3">Problem</h3><p data-i18n="sol_s1_p">Describe the operational problem or challenge faced in a clear, structured way.</p></div>
+    <div class="scard rv"><div class="ic" style="background:rgba(37,99,235,.3)">⚡</div><h3 data-i18n="sol_s2_h3">Action</h3><p data-i18n="sol_s2_p">What was done to address the problem — the specific steps and decisions taken.</p></div>
+    <div class="scard rv"><div class="ic" style="background:rgba(22,163,74,.3)">✅</div><h3 data-i18n="sol_s3_h3">Result</h3><p data-i18n="sol_s3_p">What happened — whether it worked, made no change, or made things worse.</p></div>
   </div>
 </section>
 
 <section class="sec flow" id="flow">
-  <span class="lbl rv">The Learning Loop</span>
-  <h2 class="ttl rv">A continuous organizational learning cycle</h2>
-  <p class="sub rv">Every experience captured feeds back into the organization, creating compounding knowledge over time.</p>
+  <span class="lbl rv" data-i18n="flow_lbl">The Learning Loop</span>
+  <h2 class="ttl rv" data-i18n="flow_ttl">A continuous organizational learning cycle</h2>
+  <p class="sub rv" data-i18n="flow_sub">Every experience captured feeds back into the organization, creating compounding knowledge over time.</p>
   <div class="steps rv">
-    <div class="step"><div class="num" style="background:#9333EA">1</div><div><h4>Experiences Captured</h4><p>Employees log real work experiences using the Problem → Action → Result format.</p></div></div>
+    <div class="step"><div class="num" style="background:#9333EA">1</div><div><h4 data-i18n="flow_s1_h4">Experiences Captured</h4><p data-i18n="flow_s1_p">Employees log real work experiences using the Problem → Action → Result format.</p></div></div>
     <div class="arr">↓</div>
-    <div class="step"><div class="num" style="background:#7E22CE">2</div><div><h4>Shared Across the Organization</h4><p>Experiences are immediately visible to colleagues, departments, and leadership.</p></div></div>
+    <div class="step"><div class="num" style="background:#7E22CE">2</div><div><h4 data-i18n="flow_s2_h4">Shared Across the Organization</h4><p data-i18n="flow_s2_p">Experiences are immediately visible to colleagues, departments, and leadership.</p></div></div>
     <div class="arr">↓</div>
-    <div class="step"><div class="num" style="background:#2563EB">3</div><div><h4>Enriched Through Peer Feedback</h4><p>Colleagues add comments, ratings, and perspectives — enriching each experience.</p></div></div>
+    <div class="step"><div class="num" style="background:#2563EB">3</div><div><h4 data-i18n="flow_s3_h4">Enriched Through Peer Feedback</h4><p data-i18n="flow_s3_p">Colleagues add comments, ratings, and perspectives — enriching each experience.</p></div></div>
     <div class="arr">↓</div>
-    <div class="step"><div class="num" style="background:#D97706">4</div><div><h4>Insights to Boost Problem-Solving</h4><p>Patterns emerge from the data, surfacing what works and what doesn't.</p></div></div>
+    <div class="step"><div class="num" style="background:#D97706">4</div><div><h4 data-i18n="flow_s4_h4">Insights to Boost Problem-Solving</h4><p data-i18n="flow_s4_p">Patterns emerge from the data, surfacing what works and what doesn't.</p></div></div>
     <div class="arr">↓</div>
-    <div class="step"><div class="num" style="background:#16A34A">5</div><div><h4>Improved Performance</h4><p>Teams solve problems faster, avoid past mistakes, and make better decisions.</p></div></div>
-    <div class="arr">↺ Repeat</div>
+    <div class="step"><div class="num" style="background:#16A34A">5</div><div><h4 data-i18n="flow_s5_h4">Improved Performance</h4><p data-i18n="flow_s5_p">Teams solve problems faster, avoid past mistakes, and make better decisions.</p></div></div>
+    <div class="arr" data-i18n="flow_repeat">↺ Repeat</div>
   </div>
 </section>
 
 <section class="sec feat" id="features">
-  <span class="lbl rv">Platform Features</span>
-  <h2 class="ttl rv">Everything your organization needs to learn at scale</h2>
-  <p class="sub rv">WhatIDid is designed for how organizations actually work — across teams, departments, and geographies.</p>
+  <span class="lbl rv" data-i18n="feat_lbl">Platform Features</span>
+  <h2 class="ttl rv" data-i18n="feat_ttl">Everything your organization needs to learn at scale</h2>
+  <p class="sub rv" data-i18n="feat_sub">WhatIDid is designed for how organizations actually work — across teams, departments, and geographies.</p>
   <div class="fgrid">
-    <div class="fb rv"><div class="fi" style="background:#ede9fe">💻</div><div><h4>Desktop & Mobile</h4><p>Access WhatIDid from any device — desktop, tablet, or smartphone. No app download required.</p></div></div>
-    <div class="fb rv"><div class="fi" style="background:#f5f3ff">🔍</div><div><h4>Smart Search & Filtering</h4><p>Find relevant experiences by category, result type, or keyword.</p></div></div>
-    <div class="fb rv"><div class="fi" style="background:#f0fff4">🎯</div><div><h4>Key Insights (Common Cases)</h4><p>Curated patterns that emerge from recurring experiences — surfacing what works across the organization.</p></div></div>
-    <div class="fb rv"><div class="fi" style="background:#fff7ed">⭐</div><div><h4>Rating & Engagement</h4><p>Peer ratings surface the most valuable experiences. Top experiences highlighted for everyone.</p></div></div>
-    <div class="fb rv"><div class="fi" style="background:#eff6ff">💬</div><div><h4>Comments & Discussion</h4><p>Colleagues add context and updates — making knowledge richer over time.</p></div></div>
-    <div class="fb rv"><div class="fi" style="background:#f5f3ff">🔒</div><div><h4>Employee Login & Access Control</h4><p>Secure authentication ensures only your team accesses your organizational knowledge.</p></div></div>
-    <div class="fb rv"><div class="fi" style="background:#f0fff4">📎</div><div><h4>Document Uploads</h4><p>Attach reports, presentations, or files to any experience or comment.</p></div></div>
-    <div class="fb rv"><div class="fi" style="background:#fff7ed">📊</div><div><h4>Reports & Analytics</h4><p>Understand problem distribution, recurring issues, trends over time, and what works.</p></div></div>
-    <div class="fb rv"><div class="fi" style="background:#eff6ff">🏆</div><div><h4>Top Experiences Showcase</h4><p>Curate the week's most valuable experiences — driving participation and excellence.</p></div></div>
+    <div class="fb rv"><div class="fi" style="background:#ede9fe">💻</div><div><h4 data-i18n="feat_1_h4">Desktop & Mobile</h4><p data-i18n="feat_1_p">Access WhatIDid from any device — desktop, tablet, or smartphone. Install it as an app icon on your home screen or desktop for one-tap access — no app store required.</p></div></div>
+    <div class="fb rv"><div class="fi" style="background:#fef3c7">🌐</div><div><h4 data-i18n="feat_2_h4">Multi-Language Platform</h4><p data-i18n="feat_2_p">Now available in English, Spanish, Portuguese, and Chinese — so every employee can use WhatIDid in their own language.</p></div></div>
+    <div class="fb rv"><div class="fi" style="background:#f5f3ff">🔍</div><div><h4 data-i18n="feat_3_h4">Smart Search & Filtering</h4><p data-i18n="feat_3_p">Find relevant experiences by category, result type, or keyword.</p></div></div>
+    <div class="fb rv"><div class="fi" style="background:#eff6ff">💬</div><div><h4 data-i18n="feat_4_h4">Comments & Follow-Ups</h4><p data-i18n="feat_4_p">Colleagues can comment on any experience — including emoji reactions — and anyone can add their own related experience as a follow-on, building a connected chain of real-world knowledge over time.</p></div></div>
+    <div class="fb rv"><div class="fi" style="background:#fff7ed">⭐</div><div><h4 data-i18n="feat_5_h4">Rating & Engagement</h4><p data-i18n="feat_5_p">Peer ratings help the best experiences rise to the top, encouraging quality contributions across the organization.</p></div></div>
+    <div class="fb rv"><div class="fi" style="background:#eff6ff">🏆</div><div><h4 data-i18n="feat_6_h4">Top Experiences Showcase</h4><p data-i18n="feat_6_p">Each company highlights its own Top 3 experiences — hand-picked internally to spotlight the best examples for everyone to see.</p></div></div>
+    <div class="fb rv"><div class="fi" style="background:#f0fff4">🎯</div><div><h4 data-i18n="feat_7_h4">Key Insights and its Common Cases</h4><p data-i18n="feat_7_p">Curated patterns that emerge from recurring individual experiences — surfacing what works across the organization and industry.</p></div></div>
+    <div class="fb rv"><div class="fi" style="background:#f0fff4">📎</div><div><h4 data-i18n="feat_8_h4">Document Uploads</h4><p data-i18n="feat_8_p">Attach reports, presentations, or files to any experience or comment.</p></div></div>
+    <div class="fb rv"><div class="fi" style="background:#ede9fe">🎨</div><div><h4 data-i18n="feat_9_h4">Fully Customizable</h4><p data-i18n="feat_9_p">Tailor categories, functions, and terminology to match how your organization actually works — plus your own logo, company name, and custom scrolling announcements.</p></div></div>
+    <div class="fb rv"><div class="fi" style="background:#fef3c7">🌱</div><div><h4 data-i18n="feat_10_h4">Curated Starter Content</h4><p data-i18n="feat_10_p">Launch with realistic example individual experiences and Key Insight/common cases already in place — so your team sees the platform in action from day one, before adding their own. Optional.</p></div></div>
+    <div class="fb rv"><div class="fi" style="background:#f5f3ff">⚙️</div><div><h4 data-i18n="feat_11_h4">Fully Self-Managed</h4><p data-i18n="feat_11_p">Your own admins can manage employees, categories, and content independently — no need to rely on us for day-to-day operation.</p></div></div>
+    <div class="fb rv"><div class="fi" style="background:#f5f3ff">🔒</div><div><h4 data-i18n="feat_12_h4">Employee Login & Access Control</h4><p data-i18n="feat_12_p">Secure authentication ensures only your team accesses your organizational knowledge.</p></div></div>
+    <div class="fb rv"><div class="fi" style="background:#fef2f2">🛡️</div><div><h4 data-i18n="feat_13_h4">Data Security & Privacy</h4><p data-i18n="feat_13_p">The company's data is isolated and protected by role-based access control — employees only see what they're authorized to, and administrators decide what (if anything) is shared with WhatIDid's support team.</p></div></div>
+    <div class="fb rv"><div class="fi" style="background:#fff7ed">📊</div><div><h4 data-i18n="feat_14_h4">Reports & Analytics</h4><p data-i18n="feat_14_p">Understand problem distribution, recurring issues, trends over time, and what works.</p></div></div>
   </div>
 </section>
 
 <section class="sec ins">
-  <span class="lbl dark rv">For Leadership</span>
-  <h2 class="ttl wh rv">A real-time strategic feedback loop</h2>
-  <p class="sub bl rv">Daily experiences captured across the organization help leadership make faster, better-informed decisions.</p>
+  <span class="lbl dark rv" data-i18n="ins_lbl">For Leadership</span>
+  <h2 class="ttl wh rv" data-i18n="ins_ttl">A real-time strategic feedback loop</h2>
+  <p class="sub bl rv" data-i18n="ins_sub">Daily experiences captured across the organization help leadership make faster, better-informed decisions.</p>
   <div class="igrid">
-    <div class="ic2 rv"><span class="ibadge" style="background:rgba(147,51,234,.3);color:#c4b5fd">01</span><h4>Understand Emerging Problems</h4><p>Real-time visibility into what operational challenges are occurring across every team.</p></div>
-    <div class="ic2 rv"><span class="ibadge" style="background:rgba(37,99,235,.3);color:#93c5fd">02</span><h4>Prioritize Improvement Efforts</h4><p>Data-driven insight into which recurring issues deserve attention and resources.</p></div>
-    <div class="ic2 rv"><span class="ibadge" style="background:rgba(22,163,74,.3);color:#86efac">03</span><h4>Adjust Strategies in Real Time</h4><p>Align strategic decisions with real operational challenges — not assumptions.</p></div>
+    <div class="ic2 rv"><span class="ibadge" style="background:rgba(147,51,234,.3);color:#c4b5fd">01</span><h4 data-i18n="ins_1_h4">Understand Emerging Problems</h4><p data-i18n="ins_1_p">Real-time visibility into what operational challenges are occurring across every team.</p></div>
+    <div class="ic2 rv"><span class="ibadge" style="background:rgba(37,99,235,.3);color:#93c5fd">02</span><h4 data-i18n="ins_2_h4">Prioritize Improvement Efforts</h4><p data-i18n="ins_2_p">Data-driven insight into which recurring issues deserve attention and resources.</p></div>
+    <div class="ic2 rv"><span class="ibadge" style="background:rgba(22,163,74,.3);color:#86efac">03</span><h4 data-i18n="ins_3_h4">Adjust Strategies in Real Time</h4><p data-i18n="ins_3_p">Align strategic decisions with real operational challenges — not assumptions.</p></div>
   </div>
 </section>
 
 <section class="sec ret">
-  <span class="lbl inv rv">Knowledge Retention</span>
-  <h2 class="ttl wh rv">Stop losing knowledge when people leave</h2>
-  <p class="sub wh rv">One of the biggest risks organizations face is institutional knowledge walking out the door.</p>
-  <div style="margin-bottom:2rem;" class="rv"><span class="rwarn">"Knowledge walking out the door when employees leave."</span></div>
-  <p style="color:#c4b5fd;margin-bottom:1.5rem;font-size:.97rem" class="rv">WhatIDid ensures that valuable experiences are:</p>
+  <span class="lbl inv rv" data-i18n="ret_lbl">Knowledge Retention</span>
+  <h2 class="ttl wh rv" data-i18n="ret_ttl">Stop losing knowledge when people leave</h2>
+  <p class="sub wh rv" data-i18n="ret_sub">One of the biggest risks organizations face is institutional knowledge walking out the door.</p>
+  <div style="margin-bottom:2rem;" class="rv"><span class="rwarn" data-i18n="ret_warn">"Knowledge walking out the door when employees leave."</span></div>
+  <p style="color:#c4b5fd;margin-bottom:1.5rem;font-size:.97rem" class="rv" data-i18n="ret_p">WhatIDid ensures that valuable experiences are:</p>
   <div class="circles rv">
-    <div class="cir-wrap"><div class="cir">📝</div><span>Recorded</span></div>
-    <div class="cir-wrap"><div class="cir">🔗</div><span>Shared</span></div>
-    <div class="cir-wrap"><div class="cir">🏛️</div><span>Preserved</span></div>
+    <div class="cir-wrap"><div class="cir">📝</div><span data-i18n="ret_c1">Recorded</span></div>
+    <div class="cir-wrap"><div class="cir">🔗</div><span data-i18n="ret_c2">Shared</span></div>
+    <div class="cir-wrap"><div class="cir">🏛️</div><span data-i18n="ret_c3">Preserved</span></div>
   </div>
 </section>
 
 <section class="sec dep">
-  <span class="lbl rv">Deployment Options</span>
-  <h2 class="ttl rv">Flexible deployment to match your organization's needs</h2>
-  <p class="sub rv">Organizations can implement WhatIDid in two ways.</p>
+  <span class="lbl rv" data-i18n="dep_lbl">Deployment Options</span>
+  <h2 class="ttl rv" data-i18n="dep_ttl">Flexible deployment to match your organization's needs</h2>
+  <p class="sub rv" data-i18n="dep_sub">Organizations can implement WhatIDid in two ways.</p>
   <div class="dgrid rv">
-    <div class="dc cl"><div class="di">☁️</div><h3>Cloud-Based Platform</h3><span class="dtag">Recommended</span><p>Available on Google Cloud, AWS, or Azure. Fastest deployment. Always up-to-date. No infrastructure required.</p></div>
-    <div class="dc nt"><div class="di">🏢</div><h3>Internal Deployment</h3><span class="dtag">Enterprise</span><p>Via company IT infrastructure. Full data control. Ideal for regulated industries with strict data residency requirements.</p></div>
+    <div class="dc cl"><div class="di">☁️</div><h3 data-i18n="dep_c1_h3">Cloud-Based Platform</h3><span class="dtag" data-i18n="dep_c1_tag">Recommended</span><p data-i18n="dep_c1_p">Available on Google Cloud, AWS, or Azure. Fastest deployment. Always up-to-date. No infrastructure required.</p></div>
+    <div class="dc nt"><div class="di">🏢</div><h3 data-i18n="dep_c2_h3">Internal Deployment</h3><span class="dtag" data-i18n="dep_c2_tag">Enterprise</span><p data-i18n="dep_c2_p">Via company IT infrastructure. Full data control. Ideal for regulated industries with strict data residency requirements.</p></div>
   </div>
 </section>
 
 <section class="sec pri" id="pricing">
-  <span class="lbl rv">Pricing</span>
-  <h2 class="ttl rv">Scalable pricing that grows with your organization</h2>
-  <p class="sub rv">Starting with a low-risk pilot. Scaling as you grow.</p>
+  <span class="lbl rv" data-i18n="pri_lbl">Pricing</span>
+  <h2 class="ttl rv" data-i18n="pri_ttl">Scalable pricing that grows with your organization</h2>
+  <p class="sub rv" data-i18n="pri_sub">Starting with a low-risk pilot. Scaling as you grow.</p>
   <div class="pt-wrap rv">
     <table class="pt">
       <thead>
         <tr>
-          <th rowspan="2" style="width:18%;vertical-align:middle;text-align:center;background:#4B1A8A;color:white">Users</th>
-          <th colspan="2" style="text-align:center;background:#1E2E5C;color:#FCD34D;font-family:'Sora',sans-serif;font-size:.75rem;font-weight:700;border-bottom:1px solid rgba(255,255,255,.25);padding:.7rem .5rem">Implementation Fee</th>
-          <th rowspan="2" style="vertical-align:middle;text-align:center;background:#4B1A8A;color:white;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;padding:.6rem .5rem">Annual<br>License<br><small style="font-weight:400;font-size:.68rem;color:#C4B5FD">/ user / yr</small></th>
+          <th rowspan="2" style="width:18%;vertical-align:middle;text-align:center;background:#4B1A8A;color:white" data-i18n="pri_th_users">Users</th>
+          <th colspan="2" style="text-align:center;background:#1E2E5C;color:#FCD34D;font-family:'Sora',sans-serif;font-size:.75rem;font-weight:700;border-bottom:1px solid rgba(255,255,255,.25);padding:.7rem .5rem" data-i18n="pri_th_impl">Implementation Fee</th>
+          <th rowspan="2" style="vertical-align:middle;text-align:center;background:#4B1A8A;color:white;font-family:'Sora',sans-serif;font-size:.72rem;font-weight:700;padding:.6rem .5rem"><span data-i18n="pri_th_annual">Annual<br>License</span><br><small style="font-weight:400;font-size:.68rem;color:#C4B5FD" data-i18n="pri_th_annual_sub">/ user / yr</small></th>
         </tr>
         <tr>
-          <th style="background:#059669;color:white;font-family:'Sora',sans-serif;font-size:.7rem;font-weight:700;padding:.4rem .5rem;text-align:center">Starter</th>
-          <th style="background:#1D4ED8;color:white;font-family:'Sora',sans-serif;font-size:.7rem;font-weight:700;padding:.4rem .5rem;text-align:center">Professional</th>
+          <th style="background:#059669;color:white;font-family:'Sora',sans-serif;font-size:.7rem;font-weight:700;padding:.4rem .5rem;text-align:center" data-i18n="pri_th_starter">Starter</th>
+          <th style="background:#1D4ED8;color:white;font-family:'Sora',sans-serif;font-size:.7rem;font-weight:700;padding:.4rem .5rem;text-align:center" data-i18n="pri_th_prof">Professional</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="pilot"><td><strong>Up to 50</strong></td><td>$K</td><td>$$K</td><td>$</td></tr>
+        <tr class="pilot"><td><strong><span data-i18n="pri_row1">Up to 50</span></strong></td><td>$K</td><td>$$K</td><td>$</td></tr>
         <tr><td>50 – 200</td><td>$K</td><td>$$$K</td><td>$$$</td></tr>
         <tr><td>200 – 1,000</td><td>$$K</td><td>$$$$K</td><td>$$</td></tr>
         <tr><td>1,000 – 5,000</td><td>$$$K</td><td>$$$$$K</td><td>$50</td></tr>
-        <tr><td>5,000+</td><td>Custom</td><td>Custom</td><td>Custom</td></tr>
+        <tr><td>5,000+</td><td data-i18n="pri_custom1">Custom</td><td data-i18n="pri_custom2">Custom</td><td data-i18n="pri_custom3">Custom</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="pnote rv">** Starter: standard setup, default cloud, 1 training session. Professional: dedicated cloud (Google/AWS/Azure), data migration, multiple training sessions.</p>
-  <p class="pnote rv">** Implementation fee includes cloud setup if required.</p>
-  <p class="pnote rv">** Implementation fee includes cloud setup if required.</p>
+  <p class="pnote rv" data-i18n="pri_note1">** Starter: standard setup, default cloud, 1 training session. Professional: dedicated cloud (Google/AWS/Azure), data migration, multiple training sessions.</p>
+  <p class="pnote rv" data-i18n="pri_note2">** Implementation fee includes cloud setup if required.</p>
 </section>
 
 <section class="sec impl">
-  <span class="lbl rv">Implementation</span>
-  <h2 class="ttl rv">Up and running in weeks, not months</h2>
-  <p class="sub rv">A simple, structured rollout in three stages.</p>
+  <span class="lbl rv" data-i18n="impl_lbl">Implementation</span>
+  <h2 class="ttl rv" data-i18n="impl_ttl">Up and running in weeks, not months</h2>
+  <p class="sub rv" data-i18n="impl_sub">A simple, structured rollout in three stages.</p>
   <div class="igr">
-    <div class="im i1 rv"><div class="in" style="background:#9333EA;margin:0 auto .9rem auto">1</div><h3 style="text-align:center">Setup & Alignment</h3><div class="dur" style="color:#9333EA;text-align:center">2–4 weeks</div><ul><li>Finalize agreement</li><li>Define pilot scope</li><li>Identify sponsor and implementation lead</li><li>Configure platform and categories</li></ul></div>
-    <div class="im i2 rv"><div class="in" style="background:#2563EB;margin:0 auto .9rem auto">2</div><h3 style="text-align:center">Pilot & Early Adoption</h3><div class="dur" style="color:#2563EB;text-align:center">4–6 weeks</div><ul><li>Train initial teams</li><li>Capture work experiences</li><li>Drive early engagement and usage</li></ul></div>
-    <div class="im i3 rv"><div class="in" style="background:#16A34A;margin:0 auto .9rem auto">3</div><h3 style="text-align:center">Expansion & Scale</h3><div class="dur" style="color:#16A34A;text-align:center">Starts in 8–12 weeks · ongoing</div><ul><li>Roll out across teams</li><li>Generate and leverage Key Insights</li><li>Enable data-driven strategic action</li><li>Embed into daily workflows</li></ul></div>
+    <div class="im i1 rv"><div class="in" style="background:#9333EA;margin:0 auto .9rem auto">1</div><h3 style="text-align:center" data-i18n="impl_1_h3">Setup & Alignment</h3><div class="dur" style="color:#9333EA;text-align:center" data-i18n="impl_1_dur">2–4 weeks</div><ul><li data-i18n="impl_1_li1">Finalize agreement</li><li data-i18n="impl_1_li2">Define pilot scope</li><li data-i18n="impl_1_li3">Identify sponsor and implementation lead</li><li data-i18n="impl_1_li4">Configure platform and categories</li></ul></div>
+    <div class="im i2 rv"><div class="in" style="background:#2563EB;margin:0 auto .9rem auto">2</div><h3 style="text-align:center" data-i18n="impl_2_h3">Pilot & Early Adoption</h3><div class="dur" style="color:#2563EB;text-align:center" data-i18n="impl_2_dur">4–6 weeks</div><ul><li data-i18n="impl_2_li1">Train initial teams</li><li data-i18n="impl_2_li2">Capture work experiences</li><li data-i18n="impl_2_li3">Drive early engagement and usage</li></ul></div>
+    <div class="im i3 rv"><div class="in" style="background:#16A34A;margin:0 auto .9rem auto">3</div><h3 style="text-align:center" data-i18n="impl_3_h3">Expansion & Scale</h3><div class="dur" style="color:#16A34A;text-align:center" data-i18n="impl_3_dur">Starts in 8–12 weeks · ongoing</div><ul><li data-i18n="impl_3_li1">Roll out across teams</li><li data-i18n="impl_3_li2">Generate and leverage Key Insights</li><li data-i18n="impl_3_li3">Enable data-driven strategic action</li><li data-i18n="impl_3_li4">Embed into daily workflows</li></ul></div>
   </div>
-  <p style="margin-top:1.5rem;font-style:italic;color:var(--mu);font-size:.87rem" class="rv">Sponsored by COO/CHRO; led by Operations, L&D, or Transformation teams.</p>
+  <p style="margin-top:1.5rem;font-style:italic;color:var(--mu);font-size:.87rem" class="rv" data-i18n="impl_note">Sponsored by COO/CHRO; led by Operations, L&D, or Transformation teams.</p>
 </section>
 
 
@@ -479,9 +499,9 @@ footer p{color:#475569;font-size:.82rem;}
 <section class="sec stair" id="staircase">
   <div class="stair-inner">
     <div class="stair-text rv">
-      <span class="lbl inv">The Big Picture</span>
-      <h2 class="stair-title">Think of intelligence<br>as a staircase.</h2>
-      <p class="stair-sub">Each step, a piece of knowledge.<br>Intelligence requires knowledge — accumulated over time.</p>
+      <span class="lbl inv" data-i18n="stair_lbl">The Big Picture</span>
+      <h2 class="stair-title" data-i18n="stair_title">Think of intelligence<br>as a staircase.</h2>
+      <p class="stair-sub" data-i18n="stair_sub">Each step, a piece of knowledge.<br>Intelligence requires knowledge — accumulated over time.</p>
     </div>
     <div class="stair-svg-wrap rv">
       <svg viewBox="0 0 440 220" xmlns="http://www.w3.org/2000/svg" class="stair-svg">
@@ -525,19 +545,19 @@ footer p{color:#475569;font-size:.82rem;}
       </svg>
     </div>
     <div class="stair-bottom rv">
-      <p class="stair-lose">Lose a step — and you can't reach the next.</p>
+      <p class="stair-lose" data-i18n="stair_lose">Lose a step — and you can't reach the next.</p>
       <div class="stair-cta">
         <div class="stair-brand">WhatIDid</div>
-        <p class="stair-punch">Where knowledge never gets lost.</p>
+        <p class="stair-punch" data-i18n="stair_punch">Where knowledge never gets lost.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="cta" id="cta">
-  <h2 class="rv">Imagine an organization where every solved problem strengthens collective intelligence.</h2>
-  <p class="rv">Where knowledge never gets lost.</p>
-  <button onclick="openDemoModal()" class="btn-y rv" style="border:none;cursor:pointer;font-family:inherit;">Request a Demo</button>
+  <h2 class="rv" data-i18n="cta_h2">Imagine an organization where every solved problem strengthens collective intelligence.</h2>
+  <p class="rv" data-i18n="cta_p">Where knowledge never gets lost.</p>
+  <button onclick="openDemoModal()" class="btn-y rv" style="border:none;cursor:pointer;font-family:inherit;" data-i18n="cta_btn">Request a Demo</button>
 </section>
 
 <footer>
@@ -551,12 +571,11 @@ footer p{color:#475569;font-size:.82rem;}
     </svg>
     <span>WhatIDid Corp</span>
   </div>
-  <p>© 2026 WhatIDid — All rights reserved</p>
-  <p>Real problems. Real actions. Real results.</p>
+  <p data-i18n="footer_copyright">© 2026 WhatIDid — All rights reserved</p>
+  <p data-i18n="footer_tagline">Real problems. Real actions. Real results.</p>
 </footer>
 
 <script>
-// On desktop only: animate reveals
 if(window.innerWidth >= 1024) {
   document.querySelectorAll(".rv").forEach(el => {
     el.style.opacity = "0";
@@ -581,25 +600,25 @@ if(window.innerWidth >= 1024) {
 <div class="modal-overlay" id="demoModal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeDemoModal()">×</button>
-    <h3>Request a Demo</h3>
-    <p>Fill in your details and we'll get back to you within 24 hours.</p>
+    <h3 data-i18n="modal_title">Request a Demo</h3>
+    <p data-i18n="modal_p">Fill in your details and we'll get back to you within 24 hours.</p>
     <div id="modalForm">
       <form id="demoForm" action="https://formspree.io/f/xeevdaeo" method="POST" onsubmit="submitDemoForm(event)">
-        <label>Full Name *</label>
-        <input type="text" name="name" required placeholder="Your name" />
-        <label>Work Email *</label>
-        <input type="email" name="email" required placeholder="you@company.com" />
-        <label>Company *</label>
-        <input type="text" name="company" required placeholder="Company name" />
-        <label>Message (optional)</label>
-        <textarea name="message" placeholder="Tell us about your needs..."></textarea>
-        <button type="submit" class="modal-submit">Send Request</button>
+        <label data-i18n="modal_name">Full Name *</label>
+        <input type="text" name="name" required id="modal_ph_name" />
+        <label data-i18n="modal_email">Work Email *</label>
+        <input type="email" name="email" required id="modal_ph_email" />
+        <label data-i18n="modal_company">Company *</label>
+        <input type="text" name="company" required id="modal_ph_company" />
+        <label data-i18n="modal_message">Message (optional)</label>
+        <textarea name="message" id="modal_ph_message"></textarea>
+        <button type="submit" class="modal-submit" id="modal_submit_btn" data-i18n="modal_submit">Send Request</button>
       </form>
     </div>
     <div id="modalSuccess" class="modal-success" style="display:none;">
       <div class="check">✅</div>
-      <h4>Request Sent!</h4>
-      <p>We'll be in touch within 24 hours.</p>
+      <h4 data-i18n="modal_success_h4">Request Sent!</h4>
+      <p data-i18n="modal_success_p">We'll be in touch within 24 hours.</p>
     </div>
   </div>
 </div>
@@ -611,13 +630,505 @@ async function submitDemoForm(e){
   e.preventDefault();
   var form=document.getElementById('demoForm');
   var btn=form.querySelector('button[type=submit]');
-  btn.textContent='Sending...'; btn.disabled=true;
+  var t=btn.textContent;
+  btn.textContent=T[currentLang].modal_sending; btn.disabled=true;
   try {
     var res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
     if(res.ok){ document.getElementById('modalForm').style.display='none'; document.getElementById('modalSuccess').style.display='block'; }
-    else { btn.textContent='Send Request'; btn.disabled=false; alert('Something went wrong. Please try again.'); }
-  } catch(err){ btn.textContent='Send Request'; btn.disabled=false; alert('Something went wrong. Please try again.'); }
+    else { btn.textContent=t; btn.disabled=false; alert(T[currentLang].modal_error); }
+  } catch(err){ btn.textContent=t; btn.disabled=false; alert(T[currentLang].modal_error); }
 }
 </script>
+
+<!-- ============================================================ -->
+<!-- SISTEMA DE TRADUÇÃO -->
+<!-- ============================================================ -->
+<script>
+// Fontes de vídeo por idioma — preencha aqui quando as versões traduzidas
+// estiverem prontas. Idiomas sem vídeo próprio caem no vídeo em inglês.
+var VIDEO_SOURCES = {
+  en: "https://scurkpoasiulwkmmechz.supabase.co/storage/v1/object/public/promotional-videos/video-1776905485495.mp4",
+  es: "https://scurkpoasiulwkmmechz.supabase.co/storage/v1/object/public/promotional-videos/video-1785897273716.mp4",
+  pt: "https://scurkpoasiulwkmmechz.supabase.co/storage/v1/object/public/promotional-videos/video-1785899382837.mp4",
+  zh: "https://scurkpoasiulwkmmechz.supabase.co/storage/v1/object/public/promotional-videos/video-1785897929011.mp4"
+};
+
+// Nome de cada idioma escrito nele mesmo — usado pra montar a frase da nota
+// do vídeo dinamicamente (ex: "traduzido para português", com "português"
+// vindo daqui, no idioma que a página estiver naquele momento).
+var LANG_SELF_NAMES = { en: "English", es: "español", pt: "português", zh: "中文" };
+var VIDEO_NOTE_TEMPLATES = {
+  es: function(name){ return "🤖 Audio traducido al " + name + " por IA — opcional"; },
+  pt: function(name){ return "🤖 Áudio traduzido para " + name + " por IA — opcional"; },
+  zh: function(name){ return "🤖 AI 翻译为" + name + "配音 — 可选"; }
+};
+
+var T = {
+en: {
+  page_title: "WhatIDid Corp — Organizational Learning Platform",
+  nav_problem: "The Problem", nav_solution: "Solution", nav_features: "Features", nav_pricing: "Pricing", nav_portal: "Portal", nav_demo: "Request Demo",
+  hero_badge: "🏢 Enterprise Organizational Learning",
+  hero_h1_l1: "Turn Every Work", hero_h1_l2: "Experience into", hero_h1_span: "Collective Intelligence",
+  hero_p: "Capture, structure, and share work experiences across your organization. Stop repeating mistakes. Start accelerating learning.",
+  hero_btn_demo: "Request a Demo", hero_btn_how: "See How It Works",
+  hero_tagline: "Real problems. Real actions. Real results.",
+  vp_lbl: "See It In Action", vp_title: "Watch WhatIDid in Action", vp_sub: "See how teams capture, share and learn from real work experiences.",
+  video_ai_note: "🤖 AI-translated audio — optional",
+  prob_lbl: "The Problem",
+  prob_ttl: "There's a gap between what individuals learn and what organizations embed.",
+  prob_sub: "Countless day-to-day problems are dealt with — but not always systematically learned from.",
+  prob_c1_h4: "Employees encounter problems that may recur across individuals, related to:",
+  prob_c1_li1: "Project management", prob_c1_li2: "Operations", prob_c1_li3: "Customer service", prob_c1_li4: "Internal processes",
+  prob_c2_h4: "Knowledge often remains siloed, including in employees' minds",
+  prob_c2_p: "Most of it does not spread consistently across the organization.",
+  prob_c3_h4: "As a result:",
+  prob_c3_li1: "Teams may at times repeat mistakes",
+  prob_c3_li2: "Time may be spent rediscovering solutions to recurring problems",
+  prob_c3_li3: "Valuable knowledge remains fragmented",
+  prob_c3_p: "And when employees eventually leave — the knowledge leaves with them.",
+  prob_c4_h4: "Why this happens",
+  prob_c4_p1: "How experiences are stored",
+  prob_badge1: "① Not recorded", prob_badge2: "② Decentralized", prob_badge3: "③ Free text", prob_badge4: "④ Unstructured",
+  prob_c4_p2: "Not broken down into <strong style=\"color:#64748B\">problem</strong>, <strong style=\"color:#64748B\">actions</strong>, and <strong style=\"color:#64748B\">results</strong> (<strong style=\"color:#94A3B8\">what worked</strong> and <strong style=\"color:#94A3B8\">what didn't</strong>).",
+  prob_c4_p3: "This makes them…",
+  prob_item1: "Difficult to search", prob_item2: "Difficult to turn into insights", prob_item3: "Ineffective for organizational learning",
+  prob_warn: "Organizations often lack an effective process to turn work experiences into learning — one that drives discipline and culture.",
+  sol_lbl: "The Solution",
+  sol_ttl: "WhatIDid — A platform designed to capture and structure work experiences",
+  sol_sub: "Using a simple, universal format that any employee can follow.",
+  sol_formula: "Work Experience =<br>Problem → Action → Result<br>(Worked, No Change, Got Worse)",
+  sol_s1_h3: "Problem", sol_s1_p: "Describe the operational problem or challenge faced in a clear, structured way.",
+  sol_s2_h3: "Action", sol_s2_p: "What was done to address the problem — the specific steps and decisions taken.",
+  sol_s3_h3: "Result", sol_s3_p: "What happened — whether it worked, made no change, or made things worse.",
+  flow_lbl: "The Learning Loop", flow_ttl: "A continuous organizational learning cycle",
+  flow_sub: "Every experience captured feeds back into the organization, creating compounding knowledge over time.",
+  flow_s1_h4: "Experiences Captured", flow_s1_p: "Employees log real work experiences using the Problem → Action → Result format.",
+  flow_s2_h4: "Shared Across the Organization", flow_s2_p: "Experiences are immediately visible to colleagues, departments, and leadership.",
+  flow_s3_h4: "Enriched Through Peer Feedback", flow_s3_p: "Colleagues add comments, ratings, and perspectives — enriching each experience.",
+  flow_s4_h4: "Insights to Boost Problem-Solving", flow_s4_p: "Patterns emerge from the data, surfacing what works and what doesn't.",
+  flow_s5_h4: "Improved Performance", flow_s5_p: "Teams solve problems faster, avoid past mistakes, and make better decisions.",
+  flow_repeat: "↺ Repeat",
+  feat_lbl: "Platform Features", feat_ttl: "Everything your organization needs to learn at scale",
+  feat_sub: "WhatIDid is designed for how organizations actually work — across teams, departments, and geographies.",
+  feat_1_h4: "Desktop & Mobile", feat_1_p: "Access WhatIDid from any device — desktop, tablet, or smartphone. Install it as an app icon on your home screen or desktop for one-tap access — no app store required.",
+  feat_2_h4: "Multi-Language Platform", feat_2_p: "Now available in English, Spanish, Portuguese, and Chinese — so every employee can use WhatIDid in their own language.",
+  feat_3_h4: "Smart Search & Filtering", feat_3_p: "Find relevant experiences by category, result type, or keyword.",
+  feat_4_h4: "Comments & Follow-Ups", feat_4_p: "Colleagues can comment on any experience — including emoji reactions — and anyone can add their own related experience as a follow-on, building a connected chain of real-world knowledge over time.",
+  feat_5_h4: "Rating & Engagement", feat_5_p: "Peer ratings help the best experiences rise to the top, encouraging quality contributions across the organization.",
+  feat_6_h4: "Top Experiences Showcase", feat_6_p: "Each company highlights its own Top 3 experiences — hand-picked internally to spotlight the best examples for everyone to see.",
+  feat_7_h4: "Key Insights and its Common Cases", feat_7_p: "Curated patterns that emerge from recurring individual experiences — surfacing what works across the organization and industry.",
+  feat_8_h4: "Document Uploads", feat_8_p: "Attach reports, presentations, or files to any experience or comment.",
+  feat_9_h4: "Fully Customizable", feat_9_p: "Tailor categories, functions, and terminology to match how your organization actually works — plus your own logo, company name, and custom scrolling announcements.",
+  feat_10_h4: "Curated Starter Content", feat_10_p: "Launch with realistic example individual experiences and Key Insight/common cases already in place — so your team sees the platform in action from day one, before adding their own. Optional.",
+  feat_11_h4: "Fully Self-Managed", feat_11_p: "Your own admins can manage employees, categories, and content independently — no need to rely on us for day-to-day operation.",
+  feat_12_h4: "Employee Login & Access Control", feat_12_p: "Secure authentication ensures only your team accesses your organizational knowledge.",
+  feat_13_h4: "Data Security & Privacy", feat_13_p: "The company's data is isolated and protected by role-based access control — employees only see what they're authorized to, and administrators decide what (if anything) is shared with WhatIDid's support team.",
+  feat_14_h4: "Reports & Analytics", feat_14_p: "Understand problem distribution, recurring issues, trends over time, and what works.",
+  ins_lbl: "For Leadership", ins_ttl: "A real-time strategic feedback loop",
+  ins_sub: "Daily experiences captured across the organization help leadership make faster, better-informed decisions.",
+  ins_1_h4: "Understand Emerging Problems", ins_1_p: "Real-time visibility into what operational challenges are occurring across every team.",
+  ins_2_h4: "Prioritize Improvement Efforts", ins_2_p: "Data-driven insight into which recurring issues deserve attention and resources.",
+  ins_3_h4: "Adjust Strategies in Real Time", ins_3_p: "Align strategic decisions with real operational challenges — not assumptions.",
+  ret_lbl: "Knowledge Retention", ret_ttl: "Stop losing knowledge when people leave",
+  ret_sub: "One of the biggest risks organizations face is institutional knowledge walking out the door.",
+  ret_warn: "\"Knowledge walking out the door when employees leave.\"",
+  ret_p: "WhatIDid ensures that valuable experiences are:",
+  ret_c1: "Recorded", ret_c2: "Shared", ret_c3: "Preserved",
+  dep_lbl: "Deployment Options", dep_ttl: "Flexible deployment to match your organization's needs",
+  dep_sub: "Organizations can implement WhatIDid in two ways.",
+  dep_c1_h3: "Cloud-Based Platform", dep_c1_tag: "Recommended", dep_c1_p: "Available on Google Cloud, AWS, or Azure. Fastest deployment. Always up-to-date. No infrastructure required.",
+  dep_c2_h3: "Internal Deployment", dep_c2_tag: "Enterprise", dep_c2_p: "Via company IT infrastructure. Full data control. Ideal for regulated industries with strict data residency requirements.",
+  pri_lbl: "Pricing", pri_ttl: "Scalable pricing that grows with your organization",
+  pri_sub: "Starting with a low-risk pilot. Scaling as you grow.",
+  pri_th_users: "Users", pri_th_impl: "Implementation Fee", pri_th_annual: "Annual<br>License", pri_th_annual_sub: "/ user / yr",
+  pri_th_starter: "Starter", pri_th_prof: "Professional",
+  pri_row1: "Up to 50", pri_custom1: "Custom", pri_custom2: "Custom", pri_custom3: "Custom",
+  pri_note1: "** Starter: standard setup, default cloud, 1 training session. Professional: dedicated cloud (Google/AWS/Azure), data migration, multiple training sessions.",
+  pri_note2: "** Implementation fee includes cloud setup if required.",
+  impl_lbl: "Implementation", impl_ttl: "Up and running in weeks, not months", impl_sub: "A simple, structured rollout in three stages.",
+  impl_1_h3: "Setup & Alignment", impl_1_dur: "2–4 weeks",
+  impl_1_li1: "Finalize agreement", impl_1_li2: "Define pilot scope", impl_1_li3: "Identify sponsor and implementation lead", impl_1_li4: "Configure platform and categories",
+  impl_2_h3: "Pilot & Early Adoption", impl_2_dur: "4–6 weeks",
+  impl_2_li1: "Train initial teams", impl_2_li2: "Capture work experiences", impl_2_li3: "Drive early engagement and usage",
+  impl_3_h3: "Expansion & Scale", impl_3_dur: "Starts in 8–12 weeks · ongoing",
+  impl_3_li1: "Roll out across teams", impl_3_li2: "Generate and leverage Key Insights", impl_3_li3: "Enable data-driven strategic action", impl_3_li4: "Embed into daily workflows",
+  impl_note: "Sponsored by COO/CHRO; led by Operations, L&D, or Transformation teams.",
+  stair_lbl: "The Big Picture", stair_title: "Think of intelligence<br>as a staircase.",
+  stair_sub: "Each step, a piece of knowledge.<br>Intelligence requires knowledge — accumulated over time.",
+  stair_lose: "Lose a step — and you can't reach the next.", stair_punch: "Where knowledge never gets lost.",
+  cta_h2: "Imagine an organization where every solved problem strengthens collective intelligence.",
+  cta_p: "Where knowledge never gets lost.", cta_btn: "Request a Demo",
+  footer_copyright: "© 2026 WhatIDid — All rights reserved", footer_tagline: "Real problems. Real actions. Real results.",
+  modal_title: "Request a Demo", modal_p: "Fill in your details and we'll get back to you within 24 hours.",
+  modal_name: "Full Name *", modal_email: "Work Email *", modal_company: "Company *", modal_message: "Message (optional)",
+  ph_name: "Your name", ph_email: "you@company.com", ph_company: "Company name", ph_message: "Tell us about your needs...",
+  modal_submit: "Send Request", modal_sending: "Sending...",
+  modal_success_h4: "Request Sent!", modal_success_p: "We'll be in touch within 24 hours.",
+  modal_error: "Something went wrong. Please try again."
+},
+es: {
+  page_title: "WhatIDid Corp — Plataforma de Aprendizaje Organizacional",
+  nav_problem: "El Problema", nav_solution: "Solución", nav_features: "Funciones", nav_pricing: "Precios", nav_portal: "Portal", nav_demo: "Solicitar Demo",
+  hero_badge: "🏢 Aprendizaje Organizacional Empresarial",
+  hero_h1_l1: "Convierte Cada", hero_h1_l2: "Experiencia Laboral en", hero_h1_span: "Inteligencia Colectiva",
+  hero_p: "Captura, estructura y comparte experiencias de trabajo en toda tu organización. Deja de repetir errores. Empieza a acelerar el aprendizaje.",
+  hero_btn_demo: "Solicitar una Demo", hero_btn_how: "Ver Cómo Funciona",
+  hero_tagline: "Problemas reales. Acciones reales. Resultados reales.",
+  vp_lbl: "Véalo en Acción", vp_title: "Mira WhatIDid en Acción", vp_sub: "Descubre cómo los equipos capturan, comparten y aprenden de experiencias de trabajo reales.",
+  video_ai_note: "🤖 Audio traducido por IA — opcional",
+  prob_lbl: "El Problema",
+  prob_ttl: "Hay una brecha entre lo que aprenden las personas y lo que las organizaciones realmente incorporan.",
+  prob_sub: "Se enfrentan incontables problemas cotidianos — pero no siempre se aprende de ellos de forma sistemática.",
+  prob_c1_h4: "Los empleados enfrentan problemas que pueden repetirse entre distintas personas, relacionados con:",
+  prob_c1_li1: "Gestión de proyectos", prob_c1_li2: "Operaciones", prob_c1_li3: "Servicio al cliente", prob_c1_li4: "Procesos internos",
+  prob_c2_h4: "El conocimiento suele quedar aislado, incluso en la mente de los empleados",
+  prob_c2_p: "La mayor parte no se distribuye de forma consistente por toda la organización.",
+  prob_c3_h4: "Como resultado:",
+  prob_c3_li1: "Los equipos a veces repiten errores",
+  prob_c3_li2: "Se pierde tiempo redescubriendo soluciones a problemas recurrentes",
+  prob_c3_li3: "El conocimiento valioso queda fragmentado",
+  prob_c3_p: "Y cuando los empleados finalmente se van — el conocimiento se va con ellos.",
+  prob_c4_h4: "Por qué sucede esto",
+  prob_c4_p1: "Cómo se almacenan las experiencias",
+  prob_badge1: "① No se registran", prob_badge2: "② Descentralizadas", prob_badge3: "③ Texto libre", prob_badge4: "④ Sin estructura",
+  prob_c4_p2: "No se dividen en <strong style=\"color:#64748B\">problema</strong>, <strong style=\"color:#64748B\">acciones</strong> y <strong style=\"color:#64748B\">resultados</strong> (<strong style=\"color:#94A3B8\">qué funcionó</strong> y <strong style=\"color:#94A3B8\">qué no</strong>).",
+  prob_c4_p3: "Esto las hace…",
+  prob_item1: "Difíciles de buscar", prob_item2: "Difíciles de convertir en insights", prob_item3: "Poco efectivas para el aprendizaje organizacional",
+  prob_warn: "Las organizaciones a menudo carecen de un proceso efectivo para convertir experiencias de trabajo en aprendizaje — uno que impulse la disciplina y la cultura.",
+  sol_lbl: "La Solución",
+  sol_ttl: "WhatIDid — Una plataforma diseñada para capturar y estructurar experiencias de trabajo",
+  sol_sub: "Usando un formato simple y universal que cualquier empleado puede seguir.",
+  sol_formula: "Experiencia de Trabajo =<br>Problema → Acción → Resultado<br>(Funcionó, Sin Cambios, Empeoró)",
+  sol_s1_h3: "Problema", sol_s1_p: "Describe el problema o desafío operativo enfrentado de forma clara y estructurada.",
+  sol_s2_h3: "Acción", sol_s2_p: "Qué se hizo para abordar el problema — los pasos y decisiones específicos tomados.",
+  sol_s3_h3: "Resultado", sol_s3_p: "Qué sucedió — si funcionó, no cambió nada, o empeoró la situación.",
+  flow_lbl: "El Ciclo de Aprendizaje", flow_ttl: "Un ciclo continuo de aprendizaje organizacional",
+  flow_sub: "Cada experiencia capturada retroalimenta a la organización, generando conocimiento acumulado con el tiempo.",
+  flow_s1_h4: "Experiencias Capturadas", flow_s1_p: "Los empleados registran experiencias de trabajo reales usando el formato Problema → Acción → Resultado.",
+  flow_s2_h4: "Compartidas en Toda la Organización", flow_s2_p: "Las experiencias son visibles de inmediato para colegas, departamentos y liderazgo.",
+  flow_s3_h4: "Enriquecidas con Feedback de Compañeros", flow_s3_p: "Los colegas agregan comentarios, calificaciones y perspectivas — enriqueciendo cada experiencia.",
+  flow_s4_h4: "Insights para Impulsar la Resolución de Problemas", flow_s4_p: "Surgen patrones a partir de los datos, revelando qué funciona y qué no.",
+  flow_s5_h4: "Mejor Desempeño", flow_s5_p: "Los equipos resuelven problemas más rápido, evitan errores pasados y toman mejores decisiones.",
+  flow_repeat: "↺ Repetir",
+  feat_lbl: "Funciones de la Plataforma", feat_ttl: "Todo lo que tu organización necesita para aprender a escala",
+  feat_sub: "WhatIDid está diseñado para cómo realmente trabajan las organizaciones — entre equipos, departamentos y geografías.",
+  feat_1_h4: "Escritorio y Móvil", feat_1_p: "Accede a WhatIDid desde cualquier dispositivo — escritorio, tablet o smartphone. Instálalo como un ícono de app en tu pantalla de inicio o escritorio para acceso con un toque — sin necesidad de tienda de aplicaciones.",
+  feat_2_h4: "Plataforma Multilingüe", feat_2_p: "Ya disponible en inglés, español, portugués y chino — para que cada empleado pueda usar WhatIDid en su propio idioma.",
+  feat_3_h4: "Búsqueda y Filtros Inteligentes", feat_3_p: "Encuentra experiencias relevantes por categoría, tipo de resultado o palabra clave.",
+  feat_4_h4: "Comentarios y Continuaciones", feat_4_p: "Los colegas pueden comentar en cualquier experiencia — incluso con reacciones de emoji — y cualquiera puede agregar su propia experiencia relacionada como una continuación, formando una cadena conectada de conocimiento real a lo largo del tiempo.",
+  feat_5_h4: "Calificaciones y Participación", feat_5_p: "Las calificaciones de los compañeros ayudan a que las mejores experiencias se destaquen, fomentando contribuciones de calidad en toda la organización.",
+  feat_6_h4: "Vitrina de Mejores Experiencias", feat_6_p: "Cada empresa destaca sus propias 3 mejores experiencias — seleccionadas internamente para mostrar los mejores ejemplos a todos.",
+  feat_7_h4: "Key Insights y sus Casos Comunes", feat_7_p: "Patrones curados que emergen de experiencias individuales recurrentes — mostrando qué funciona en toda la organización y la industria.",
+  feat_8_h4: "Subida de Documentos", feat_8_p: "Adjunta informes, presentaciones o archivos a cualquier experiencia o comentario.",
+  feat_9_h4: "Totalmente Personalizable", feat_9_p: "Adapta categorías, funciones y terminología según cómo trabaja realmente tu organización — además de tu propio logo, nombre de empresa y anuncios personalizados en el ticker.",
+  feat_10_h4: "Contenido Inicial Curado", feat_10_p: "Comienza con experiencias individuales de ejemplo realistas y Key Insight/casos comunes ya configurados — para que tu equipo vea la plataforma en acción desde el primer día, antes de agregar las suyas propias. Opcional.",
+  feat_11_h4: "Totalmente Autogestionable", feat_11_p: "Tus propios administradores pueden gestionar empleados, categorías y contenido de forma independiente — sin depender de nosotros para la operación diaria.",
+  feat_12_h4: "Inicio de Sesión y Control de Acceso", feat_12_p: "La autenticación segura garantiza que solo tu equipo acceda al conocimiento de tu organización.",
+  feat_13_h4: "Seguridad y Privacidad de Datos", feat_13_p: "Los datos de la empresa están aislados y protegidos mediante control de acceso basado en roles — los empleados solo ven lo que están autorizados a ver, y los administradores deciden qué (si acaso) se comparte con el equipo de soporte de WhatIDid.",
+  feat_14_h4: "Informes y Analítica", feat_14_p: "Comprende la distribución de problemas, incidencias recurrentes, tendencias en el tiempo y qué funciona.",
+  ins_lbl: "Para el Liderazgo", ins_ttl: "Un ciclo de retroalimentación estratégica en tiempo real",
+  ins_sub: "Las experiencias diarias capturadas en toda la organización ayudan al liderazgo a tomar decisiones más rápidas e informadas.",
+  ins_1_h4: "Comprender Problemas Emergentes", ins_1_p: "Visibilidad en tiempo real de los desafíos operativos que ocurren en cada equipo.",
+  ins_2_h4: "Priorizar Esfuerzos de Mejora", ins_2_p: "Información basada en datos sobre qué problemas recurrentes merecen atención y recursos.",
+  ins_3_h4: "Ajustar Estrategias en Tiempo Real", ins_3_p: "Alinea las decisiones estratégicas con desafíos operativos reales — no con suposiciones.",
+  ret_lbl: "Retención de Conocimiento", ret_ttl: "Deja de perder conocimiento cuando las personas se van",
+  ret_sub: "Uno de los mayores riesgos que enfrentan las organizaciones es la pérdida del conocimiento institucional.",
+  ret_warn: "\"El conocimiento se pierde cuando los empleados dejan la empresa.\"",
+  ret_p: "WhatIDid garantiza que las experiencias valiosas sean:",
+  ret_c1: "Registradas", ret_c2: "Compartidas", ret_c3: "Preservadas",
+  dep_lbl: "Opciones de Implementación", dep_ttl: "Implementación flexible según las necesidades de tu organización",
+  dep_sub: "Las organizaciones pueden implementar WhatIDid de dos maneras.",
+  dep_c1_h3: "Plataforma en la Nube", dep_c1_tag: "Recomendado", dep_c1_p: "Disponible en Google Cloud, AWS o Azure. Implementación más rápida. Siempre actualizado. Sin infraestructura requerida.",
+  dep_c2_h3: "Implementación Interna", dep_c2_tag: "Empresarial", dep_c2_p: "A través de la infraestructura de TI de la empresa. Control total de los datos. Ideal para industrias reguladas con requisitos estrictos de residencia de datos.",
+  pri_lbl: "Precios", pri_ttl: "Precios escalables que crecen con tu organización",
+  pri_sub: "Comenzando con un piloto de bajo riesgo. Escalando a medida que creces.",
+  pri_th_users: "Usuarios", pri_th_impl: "Costo de Implementación", pri_th_annual: "Licencia<br>Anual", pri_th_annual_sub: "/ usuario / año",
+  pri_th_starter: "Starter", pri_th_prof: "Professional",
+  pri_row1: "Hasta 50", pri_custom1: "A medida", pri_custom2: "A medida", pri_custom3: "A medida",
+  pri_note1: "** Starter: configuración estándar, nube por defecto, 1 sesión de capacitación. Professional: nube dedicada (Google/AWS/Azure), migración de datos, múltiples sesiones de capacitación.",
+  pri_note2: "** El costo de implementación incluye la configuración en la nube si es necesario.",
+  impl_lbl: "Implementación", impl_ttl: "Operativo en semanas, no meses", impl_sub: "Un despliegue simple y estructurado en tres etapas.",
+  impl_1_h3: "Configuración y Alineación", impl_1_dur: "2–4 semanas",
+  impl_1_li1: "Finalizar el acuerdo", impl_1_li2: "Definir el alcance del piloto", impl_1_li3: "Identificar patrocinador y líder de implementación", impl_1_li4: "Configurar la plataforma y las categorías",
+  impl_2_h3: "Piloto y Adopción Temprana", impl_2_dur: "4–6 semanas",
+  impl_2_li1: "Capacitar a los equipos iniciales", impl_2_li2: "Capturar experiencias de trabajo", impl_2_li3: "Impulsar la participación y el uso tempranos",
+  impl_3_h3: "Expansión y Escala", impl_3_dur: "Comienza en 8–12 semanas · continuo",
+  impl_3_li1: "Implementar en todos los equipos", impl_3_li2: "Generar y aprovechar Key Insights", impl_3_li3: "Habilitar la acción estratégica basada en datos", impl_3_li4: "Integrar en los flujos de trabajo diarios",
+  impl_note: "Patrocinado por COO/CHRO; liderado por equipos de Operaciones, L&D o Transformación.",
+  stair_lbl: "El Panorama General", stair_title: "Piensa en la inteligencia<br>como una escalera.",
+  stair_sub: "Cada escalón, una pieza de conocimiento.<br>La inteligencia requiere conocimiento — acumulado con el tiempo.",
+  stair_lose: "Pierde un escalón — y no podrás llegar al siguiente.", stair_punch: "Donde el conocimiento nunca se pierde.",
+  cta_h2: "Imagina una organización donde cada problema resuelto fortalece la inteligencia colectiva.",
+  cta_p: "Donde el conocimiento nunca se pierde.", cta_btn: "Solicitar una Demo",
+  footer_copyright: "© 2026 WhatIDid — Todos los derechos reservados", footer_tagline: "Problemas reales. Acciones reales. Resultados reales.",
+  modal_title: "Solicitar una Demo", modal_p: "Completa tus datos y te contactaremos dentro de 24 horas.",
+  modal_name: "Nombre Completo *", modal_email: "Correo de Trabajo *", modal_company: "Empresa *", modal_message: "Mensaje (opcional)",
+  ph_name: "Tu nombre", ph_email: "tu@empresa.com", ph_company: "Nombre de la empresa", ph_message: "Cuéntanos sobre tus necesidades...",
+  modal_submit: "Enviar Solicitud", modal_sending: "Enviando...",
+  modal_success_h4: "¡Solicitud Enviada!", modal_success_p: "Nos pondremos en contacto dentro de 24 horas.",
+  modal_error: "Algo salió mal. Por favor, inténtalo de nuevo."
+},
+pt: {
+  page_title: "WhatIDid Corp — Plataforma de Aprendizado Organizacional",
+  nav_problem: "O Problema", nav_solution: "Solução", nav_features: "Recursos", nav_pricing: "Preços", nav_portal: "Portal", nav_demo: "Solicitar Demo",
+  hero_badge: "🏢 Aprendizado Organizacional Corporativo",
+  hero_h1_l1: "Transforme Cada", hero_h1_l2: "Experiência de Trabalho em", hero_h1_span: "Inteligência Coletiva",
+  hero_p: "Capture, estruture e compartilhe experiências de trabalho em toda a sua organização. Pare de repetir erros. Comece a acelerar o aprendizado.",
+  hero_btn_demo: "Solicitar uma Demo", hero_btn_how: "Veja Como Funciona",
+  hero_tagline: "Problemas reais. Ações reais. Resultados reais.",
+  vp_lbl: "Veja em Ação", vp_title: "Assista ao WhatIDid em Ação", vp_sub: "Veja como as equipes capturam, compartilham e aprendem com experiências de trabalho reais.",
+  video_ai_note: "🤖 Áudio traduzido por IA — opcional",
+  prob_lbl: "O Problema",
+  prob_ttl: "Existe uma lacuna entre o que os indivíduos aprendem e o que as organizações realmente incorporam.",
+  prob_sub: "Inúmeros problemas do dia a dia são resolvidos — mas nem sempre se aprende sistematicamente com eles.",
+  prob_c1_h4: "Os funcionários enfrentam problemas que podem se repetir entre diferentes pessoas, relacionados a:",
+  prob_c1_li1: "Gestão de projetos", prob_c1_li2: "Operações", prob_c1_li3: "Atendimento ao cliente", prob_c1_li4: "Processos internos",
+  prob_c2_h4: "O conhecimento costuma ficar isolado, inclusive na mente dos funcionários",
+  prob_c2_p: "A maior parte dele não se espalha de forma consistente pela organização.",
+  prob_c3_h4: "Como resultado:",
+  prob_c3_li1: "As equipes às vezes repetem erros",
+  prob_c3_li2: "Tempo pode ser gasto redescobrindo soluções para problemas recorrentes",
+  prob_c3_li3: "Conhecimento valioso permanece fragmentado",
+  prob_c3_p: "E quando os funcionários eventualmente saem — o conhecimento vai embora com eles.",
+  prob_c4_h4: "Por que isso acontece",
+  prob_c4_p1: "Como as experiências são armazenadas",
+  prob_badge1: "① Não registradas", prob_badge2: "② Descentralizadas", prob_badge3: "③ Texto livre", prob_badge4: "④ Sem estrutura",
+  prob_c4_p2: "Não divididas em <strong style=\"color:#64748B\">problema</strong>, <strong style=\"color:#64748B\">ações</strong> e <strong style=\"color:#64748B\">resultados</strong> (<strong style=\"color:#94A3B8\">o que funcionou</strong> e <strong style=\"color:#94A3B8\">o que não funcionou</strong>).",
+  prob_c4_p3: "Isso as torna…",
+  prob_item1: "Difíceis de buscar", prob_item2: "Difíceis de transformar em insights", prob_item3: "Ineficazes para o aprendizado organizacional",
+  prob_warn: "As organizações frequentemente não têm um processo eficaz para transformar experiências de trabalho em aprendizado — um que impulsione disciplina e cultura.",
+  sol_lbl: "A Solução",
+  sol_ttl: "WhatIDid — Uma plataforma feita para capturar e estruturar experiências de trabalho",
+  sol_sub: "Usando um formato simples e universal que qualquer funcionário pode seguir.",
+  sol_formula: "Experiência de Trabalho =<br>Problema → Ação → Resultado<br>(Funcionou, Sem Mudança, Piorou)",
+  sol_s1_h3: "Problema", sol_s1_p: "Descreva o problema ou desafio operacional enfrentado de forma clara e estruturada.",
+  sol_s2_h3: "Ação", sol_s2_p: "O que foi feito para resolver o problema — os passos e decisões específicos tomados.",
+  sol_s3_h3: "Resultado", sol_s3_p: "O que aconteceu — se funcionou, não mudou nada, ou piorou a situação.",
+  flow_lbl: "O Ciclo de Aprendizado", flow_ttl: "Um ciclo contínuo de aprendizado organizacional",
+  flow_sub: "Cada experiência capturada realimenta a organização, gerando conhecimento acumulado ao longo do tempo.",
+  flow_s1_h4: "Experiências Capturadas", flow_s1_p: "Os funcionários registram experiências de trabalho reais usando o formato Problema → Ação → Resultado.",
+  flow_s2_h4: "Compartilhadas em Toda a Organização", flow_s2_p: "As experiências ficam imediatamente visíveis para colegas, departamentos e liderança.",
+  flow_s3_h4: "Enriquecidas por Feedback dos Colegas", flow_s3_p: "Colegas adicionam comentários, avaliações e perspectivas — enriquecendo cada experiência.",
+  flow_s4_h4: "Insights para Impulsionar a Resolução de Problemas", flow_s4_p: "Padrões emergem dos dados, revelando o que funciona e o que não funciona.",
+  flow_s5_h4: "Desempenho Aprimorado", flow_s5_p: "As equipes resolvem problemas mais rápido, evitam erros passados e tomam melhores decisões.",
+  flow_repeat: "↺ Repetir",
+  feat_lbl: "Recursos da Plataforma", feat_ttl: "Tudo que sua organização precisa para aprender em escala",
+  feat_sub: "O WhatIDid foi desenvolvido para como as organizações realmente funcionam — entre equipes, departamentos e geografias.",
+  feat_1_h4: "Desktop e Mobile", feat_1_p: "Acesse o WhatIDid de qualquer dispositivo — desktop, tablet ou smartphone. Instale como um ícone de aplicativo na tela inicial ou desktop para acesso com um toque — sem precisar de loja de aplicativos.",
+  feat_2_h4: "Plataforma Multilíngue", feat_2_p: "Já disponível em inglês, espanhol, português e chinês — para que cada funcionário use o WhatIDid no próprio idioma.",
+  feat_3_h4: "Busca e Filtros Inteligentes", feat_3_p: "Encontre experiências relevantes por categoria, tipo de resultado ou palavra-chave.",
+  feat_4_h4: "Comentários e Continuações", feat_4_p: "Colegas podem comentar em qualquer experiência — inclusive com reações em emoji — e qualquer pessoa pode adicionar sua própria experiência relacionada como uma continuação, formando uma cadeia conectada de conhecimento real ao longo do tempo.",
+  feat_5_h4: "Avaliações e Engajamento", feat_5_p: "As avaliações dos colegas ajudam as melhores experiências a se destacarem, incentivando contribuições de qualidade em toda a organização.",
+  feat_6_h4: "Vitrine das Melhores Experiências", feat_6_p: "Cada empresa destaca suas próprias 3 melhores experiências — selecionadas internamente para mostrar os melhores exemplos a todos.",
+  feat_7_h4: "Key Insights e seus Casos Comuns", feat_7_p: "Padrões selecionados que emergem de experiências individuais recorrentes — revelando o que funciona em toda a organização e no setor.",
+  feat_8_h4: "Upload de Documentos", feat_8_p: "Anexe relatórios, apresentações ou arquivos a qualquer experiência ou comentário.",
+  feat_9_h4: "Totalmente Personalizável", feat_9_p: "Adapte categorias, funções e terminologia de acordo com a forma como sua organização realmente trabalha — além do seu próprio logotipo, nome da empresa e anúncios personalizados no ticker.",
+  feat_10_h4: "Conteúdo Inicial Curado", feat_10_p: "Comece com experiências individuais de exemplo realistas e Key Insight/casos comuns já configurados — para que sua equipe veja a plataforma em ação desde o primeiro dia, antes de adicionar as próprias. Opcional.",
+  feat_11_h4: "Totalmente Autogerenciável", feat_11_p: "Seus próprios administradores podem gerenciar funcionários, categorias e conteúdo de forma independente — sem depender de nós para a operação do dia a dia.",
+  feat_12_h4: "Login de Funcionário e Controle de Acesso", feat_12_p: "Autenticação segura garante que apenas sua equipe acesse o conhecimento da sua organização.",
+  feat_13_h4: "Segurança e Privacidade de Dados", feat_13_p: "Os dados da empresa ficam isolados e protegidos por controle de acesso baseado em funções — funcionários só veem o que estão autorizados a ver, e os administradores decidem o que (se algo) é compartilhado com a equipe de suporte do WhatIDid.",
+  feat_14_h4: "Relatórios e Análises", feat_14_p: "Entenda a distribuição de problemas, questões recorrentes, tendências ao longo do tempo e o que funciona.",
+  ins_lbl: "Para a Liderança", ins_ttl: "Um ciclo de feedback estratégico em tempo real",
+  ins_sub: "Experiências diárias capturadas em toda a organização ajudam a liderança a tomar decisões mais rápidas e bem informadas.",
+  ins_1_h4: "Compreender Problemas Emergentes", ins_1_p: "Visibilidade em tempo real sobre quais desafios operacionais estão ocorrendo em cada equipe.",
+  ins_2_h4: "Priorizar Esforços de Melhoria", ins_2_p: "Insight baseado em dados sobre quais problemas recorrentes merecem atenção e recursos.",
+  ins_3_h4: "Ajustar Estratégias em Tempo Real", ins_3_p: "Alinhe decisões estratégicas com desafios operacionais reais — não com suposições.",
+  ret_lbl: "Retenção de Conhecimento", ret_ttl: "Pare de perder conhecimento quando as pessoas saem",
+  ret_sub: "Um dos maiores riscos que as organizações enfrentam é a perda do conhecimento institucional.",
+  ret_warn: "\"O conhecimento se perde quando os funcionários deixam a empresa.\"",
+  ret_p: "O WhatIDid garante que experiências valiosas sejam:",
+  ret_c1: "Registradas", ret_c2: "Compartilhadas", ret_c3: "Preservadas",
+  dep_lbl: "Opções de Implantação", dep_ttl: "Implantação flexível para atender às necessidades da sua organização",
+  dep_sub: "As organizações podem implementar o WhatIDid de duas formas.",
+  dep_c1_h3: "Plataforma em Nuvem", dep_c1_tag: "Recomendado", dep_c1_p: "Disponível no Google Cloud, AWS ou Azure. Implantação mais rápida. Sempre atualizado. Sem necessidade de infraestrutura.",
+  dep_c2_h3: "Implantação Interna", dep_c2_tag: "Corporativo", dep_c2_p: "Via infraestrutura de TI da empresa. Controle total dos dados. Ideal para setores regulados com requisitos rígidos de residência de dados.",
+  pri_lbl: "Preços", pri_ttl: "Preços escaláveis que crescem com sua organização",
+  pri_sub: "Começando com um piloto de baixo risco. Escalando conforme você cresce.",
+  pri_th_users: "Usuários", pri_th_impl: "Taxa de Implementação", pri_th_annual: "Licença<br>Anual", pri_th_annual_sub: "/ usuário / ano",
+  pri_th_starter: "Starter", pri_th_prof: "Professional",
+  pri_row1: "Até 50", pri_custom1: "Sob consulta", pri_custom2: "Sob consulta", pri_custom3: "Sob consulta",
+  pri_note1: "** Starter: configuração padrão, nuvem padrão, 1 sessão de treinamento. Professional: nuvem dedicada (Google/AWS/Azure), migração de dados, múltiplas sessões de treinamento.",
+  pri_note2: "** A taxa de implementação inclui configuração de nuvem, se necessário.",
+  impl_lbl: "Implementação", impl_ttl: "Em funcionamento em semanas, não meses", impl_sub: "Um rollout simples e estruturado em três etapas.",
+  impl_1_h3: "Configuração e Alinhamento", impl_1_dur: "2–4 semanas",
+  impl_1_li1: "Finalizar o acordo", impl_1_li2: "Definir o escopo do piloto", impl_1_li3: "Identificar patrocinador e líder de implementação", impl_1_li4: "Configurar a plataforma e as categorias",
+  impl_2_h3: "Piloto e Adoção Inicial", impl_2_dur: "4–6 semanas",
+  impl_2_li1: "Treinar as equipes iniciais", impl_2_li2: "Capturar experiências de trabalho", impl_2_li3: "Impulsionar engajamento e uso inicial",
+  impl_3_h3: "Expansão e Escala", impl_3_dur: "Começa em 8–12 semanas · contínuo",
+  impl_3_li1: "Expandir para todas as equipes", impl_3_li2: "Gerar e aproveitar Key Insights", impl_3_li3: "Habilitar ação estratégica baseada em dados", impl_3_li4: "Incorporar aos fluxos de trabalho diários",
+  impl_note: "Patrocinado por COO/CHRO; liderado pelas equipes de Operações, T&D ou Transformação.",
+  stair_lbl: "O Panorama Geral", stair_title: "Pense na inteligência<br>como uma escada.",
+  stair_sub: "Cada degrau, um pedaço de conhecimento.<br>Inteligência exige conhecimento — acumulado ao longo do tempo.",
+  stair_lose: "Perca um degrau — e você não alcança o próximo.", stair_punch: "Onde o conhecimento nunca se perde.",
+  cta_h2: "Imagine uma organização onde cada problema resolvido fortalece a inteligência coletiva.",
+  cta_p: "Onde o conhecimento nunca se perde.", cta_btn: "Solicitar uma Demo",
+  footer_copyright: "© 2026 WhatIDid — Todos os direitos reservados", footer_tagline: "Problemas reais. Ações reais. Resultados reais.",
+  modal_title: "Solicitar uma Demo", modal_p: "Preencha seus dados e entraremos em contato em até 24 horas.",
+  modal_name: "Nome Completo *", modal_email: "E-mail Corporativo *", modal_company: "Empresa *", modal_message: "Mensagem (opcional)",
+  ph_name: "Seu nome", ph_email: "voce@empresa.com", ph_company: "Nome da empresa", ph_message: "Conte-nos sobre suas necessidades...",
+  modal_submit: "Enviar Solicitação", modal_sending: "Enviando...",
+  modal_success_h4: "Solicitação Enviada!", modal_success_p: "Entraremos em contato em até 24 horas.",
+  modal_error: "Algo deu errado. Por favor, tente novamente."
+},
+zh: {
+  page_title: "WhatIDid Corp — 组织学习平台",
+  nav_problem: "问题所在", nav_solution: "解决方案", nav_features: "功能", nav_pricing: "价格", nav_portal: "门户", nav_demo: "申请演示",
+  hero_badge: "🏢 企业组织学习",
+  hero_h1_l1: "把每一次工作经验", hero_h1_l2: "转化为", hero_h1_span: "集体智慧",
+  hero_p: "在整个组织中捕捉、整理并分享工作经验。停止重复犯错，加速团队学习。",
+  hero_btn_demo: "申请演示", hero_btn_how: "了解运作方式",
+  hero_tagline: "真实问题。真实行动。真实结果。",
+  vp_lbl: "查看实际效果", vp_title: "观看 WhatIDid 实际演示", vp_sub: "了解团队如何记录、分享并从真实工作经验中学习。",
+  video_ai_note: "🤖 AI 翻译配音 — 可选",
+  prob_lbl: "问题所在",
+  prob_ttl: "个人所学与组织真正沉淀下来的知识之间，存在一道鸿沟。",
+  prob_sub: "无数日常问题被处理——但并不总能被系统性地总结和学习。",
+  prob_c1_h4: "员工遇到的问题，常常在不同人之间反复出现，涉及：",
+  prob_c1_li1: "项目管理", prob_c1_li2: "运营", prob_c1_li3: "客户服务", prob_c1_li4: "内部流程",
+  prob_c2_h4: "知识常常被孤立存放，甚至只存在于员工个人脑中",
+  prob_c2_p: "大部分知识并未在整个组织中持续传播。",
+  prob_c3_h4: "结果是：",
+  prob_c3_li1: "团队有时会重复犯同样的错误",
+  prob_c3_li2: "花时间重新摸索已经出现过的问题的解决方法",
+  prob_c3_li3: "有价值的知识变得零散",
+  prob_c3_p: "而当员工最终离开时——知识也随之流失。",
+  prob_c4_h4: "为什么会这样",
+  prob_c4_p1: "经验是如何被记录的",
+  prob_badge1: "① 未被记录", prob_badge2: "② 分散各处", prob_badge3: "③ 自由文本", prob_badge4: "④ 缺乏结构",
+  prob_c4_p2: "没有被拆解为<strong style=\"color:#64748B\">问题</strong>、<strong style=\"color:#64748B\">行动</strong>和<strong style=\"color:#64748B\">结果</strong>（<strong style=\"color:#94A3B8\">有效的方法</strong>和<strong style=\"color:#94A3B8\">无效的方法</strong>）。",
+  prob_c4_p3: "这使得它们……",
+  prob_item1: "难以检索", prob_item2: "难以转化为洞察", prob_item3: "对组织学习作用有限",
+  prob_warn: "许多组织缺乏一套有效的机制，把工作经验转化为学习成果——一套能够培养纪律和文化的机制。",
+  sol_lbl: "解决方案",
+  sol_ttl: "WhatIDid —— 一个专为记录和整理工作经验而设计的平台",
+  sol_sub: "采用简单、通用的格式，任何员工都能轻松上手。",
+  sol_formula: "工作经验 =<br>问题 → 行动 → 结果<br>（有效、无变化、更糟）",
+  sol_s1_h3: "问题", sol_s1_p: "以清晰、结构化的方式描述所遇到的运营问题或挑战。",
+  sol_s2_h3: "行动", sol_s2_p: "为解决问题采取了哪些具体步骤和决策。",
+  sol_s3_h3: "结果", sol_s3_p: "发生了什么——是有效、没有变化，还是让情况变得更糟。",
+  flow_lbl: "学习循环", flow_ttl: "一个持续的组织学习循环",
+  flow_sub: "每一条被记录的经验都会反哺组织，随着时间推移不断积累知识。",
+  flow_s1_h4: "记录经验", flow_s1_p: "员工使用「问题 → 行动 → 结果」的格式记录真实的工作经验。",
+  flow_s2_h4: "在组织内共享", flow_s2_p: "经验会立即对同事、各部门和管理层可见。",
+  flow_s3_h4: "通过同事反馈丰富内容", flow_s3_p: "同事添加评论、评分和不同视角——让每一条经验更加丰富。",
+  flow_s4_h4: "洞察助力问题解决", flow_s4_p: "数据中浮现出规律，揭示哪些方法有效、哪些无效。",
+  flow_s5_h4: "绩效提升", flow_s5_p: "团队更快解决问题，避免重复过去的错误，并做出更好的决策。",
+  flow_repeat: "↺ 循环往复",
+  feat_lbl: "平台功能", feat_ttl: "组织规模化学习所需的一切",
+  feat_sub: "WhatIDid 的设计贴合组织实际的运作方式——跨团队、跨部门、跨地域。",
+  feat_1_h4: "电脑与手机端", feat_1_p: "在任何设备上访问 WhatIDid——电脑、平板或手机。可安装为主屏幕或桌面图标，一键直达，无需应用商店。",
+  feat_2_h4: "多语言平台", feat_2_p: "现已支持英语、西班牙语、葡萄牙语和中文——让每位员工都能用自己的语言使用 WhatIDid。",
+  feat_3_h4: "智能搜索与筛选", feat_3_p: "按类别、结果类型或关键词查找相关经验。",
+  feat_4_h4: "评论与续写", feat_4_p: "同事可以对任何经验发表评论——还可以使用表情符号回应——任何人也都可以为已有经验添加自己相关的经验作为「续写」，随着时间推移形成一条连贯的真实知识链。",
+  feat_5_h4: "评分与参与度", feat_5_p: "同事评分帮助最优秀的经验脱颖而出，激励全组织贡献高质量内容。",
+  feat_6_h4: "优秀经验展示", feat_6_p: "每家企业可以自行评选出各自的「前三名」经验——由内部精选，向所有人展示最佳范例。",
+  feat_7_h4: "Key Insights 及其共性案例", feat_7_p: "从反复出现的个人经验中提炼出的精选规律——揭示在本组织及整个行业范围内行之有效的方法。",
+  feat_8_h4: "文件上传", feat_8_p: "为任何经验或评论附上报告、演示文稿或其他文件。",
+  feat_9_h4: "完全可定制", feat_9_p: "根据组织实际运作方式定制分类、职能和术语——还可以设置专属的公司标志、公司名称和滚动通知内容。",
+  feat_10_h4: "精选起始内容", feat_10_p: "上线即附带真实感十足的示例个人经验和 Key Insights/共性案例——让团队从第一天起就能看到平台的实际效果，之后再逐步添加自己的内容。可选。",
+  feat_11_h4: "完全自主管理", feat_11_p: "贵公司的管理员可以独立管理员工、分类和内容——日常运营无需依赖我们。",
+  feat_12_h4: "员工登录与权限控制", feat_12_p: "安全的身份验证，确保只有你的团队才能访问组织知识。",
+  feat_13_h4: "数据安全与隐私", feat_13_p: "公司的数据相互隔离，并通过基于角色的权限控制加以保护——员工只能看到被授权查看的内容，是否与 WhatIDid 支持团队共享（以及共享哪些内容）由管理员自行决定。",
+  feat_14_h4: "报告与分析", feat_14_p: "了解问题分布、反复出现的问题、长期趋势，以及哪些方法真正有效。",
+  ins_lbl: "面向管理层", ins_ttl: "实时的战略反馈循环",
+  ins_sub: "全组织每日记录的经验，帮助管理层做出更快、更明智的决策。",
+  ins_1_h4: "了解新出现的问题", ins_1_p: "实时了解每个团队正在面临的运营挑战。",
+  ins_2_h4: "确定改进优先级", ins_2_p: "基于数据判断哪些反复出现的问题值得投入关注和资源。",
+  ins_3_h4: "实时调整策略", ins_3_p: "让战略决策与真实的运营挑战保持一致——而非凭假设行事。",
+  ret_lbl: "知识留存", ret_ttl: "别让知识随人员流失而消失",
+  ret_sub: "组织面临的最大风险之一，就是机构知识随着人员离开而流失。",
+  ret_warn: "「员工离开公司时，知识也随之流失。」",
+  ret_p: "WhatIDid 确保有价值的经验能够被：",
+  ret_c1: "记录", ret_c2: "共享", ret_c3: "保存",
+  dep_lbl: "部署方式", dep_ttl: "灵活的部署方式，匹配组织的实际需求",
+  dep_sub: "组织可以通过两种方式部署 WhatIDid。",
+  dep_c1_h3: "云端平台", dep_c1_tag: "推荐", dep_c1_p: "支持 Google Cloud、AWS 或 Azure。部署速度最快，始终保持最新，无需自建基础设施。",
+  dep_c2_h3: "内部部署", dep_c2_tag: "企业级", dep_c2_p: "通过公司自有 IT 基础设施部署。完全掌控数据，适合对数据存放地有严格要求的受监管行业。",
+  pri_lbl: "价格", pri_ttl: "随组织成长而灵活扩展的定价方案",
+  pri_sub: "从低风险的试点开始，随着规模增长逐步扩展。",
+  pri_th_users: "用户数", pri_th_impl: "实施费用", pri_th_annual: "年度<br>许可费", pri_th_annual_sub: "/ 用户 / 年",
+  pri_th_starter: "入门版", pri_th_prof: "专业版",
+  pri_row1: "最多 50 人", pri_custom1: "定制", pri_custom2: "定制", pri_custom3: "定制",
+  pri_note1: "** 入门版：标准配置、默认云环境、1 次培训。专业版：专属云环境（Google/AWS/Azure）、数据迁移、多次培训。",
+  pri_note2: "** 如需云端配置，实施费用中已包含相关费用。",
+  impl_lbl: "实施流程", impl_ttl: "数周内即可上线，无需数月", impl_sub: "简单、结构化的三阶段推进流程。",
+  impl_1_h3: "设置与对齐", impl_1_dur: "2–4 周",
+  impl_1_li1: "确认合作协议", impl_1_li2: "明确试点范围", impl_1_li3: "确定发起人和实施负责人", impl_1_li4: "配置平台与分类",
+  impl_2_h3: "试点与初期采用", impl_2_dur: "4–6 周",
+  impl_2_li1: "培训首批团队", impl_2_li2: "记录工作经验", impl_2_li3: "推动早期参与和使用",
+  impl_3_h3: "扩展与规模化", impl_3_dur: "8–12 周后开始 · 持续进行",
+  impl_3_li1: "向所有团队推广", impl_3_li2: "生成并运用 Key Insights", impl_3_li3: "支持基于数据的战略行动", impl_3_li4: "融入日常工作流程",
+  impl_note: "由 COO/CHRO 支持发起；由运营、学习发展或组织转型团队主导推进。",
+  stair_lbl: "全局视角", stair_title: "把智慧<br>想象成一段楼梯。",
+  stair_sub: "每一级台阶，都是一份知识。<br>智慧需要知识——需要日积月累。",
+  stair_lose: "错过一级台阶——就无法迈向下一级。", stair_punch: "让知识永不流失。",
+  cta_h2: "试想一个组织，每解决一个问题，都在增强集体智慧。",
+  cta_p: "让知识永不流失。", cta_btn: "申请演示",
+  footer_copyright: "© 2026 WhatIDid — 保留所有权利", footer_tagline: "真实问题。真实行动。真实结果。",
+  modal_title: "申请演示", modal_p: "填写您的信息，我们将在 24 小时内与您联系。",
+  modal_name: "姓名 *", modal_email: "工作邮箱 *", modal_company: "公司 *", modal_message: "留言（选填）",
+  ph_name: "您的姓名", ph_email: "you@company.com", ph_company: "公司名称", ph_message: "请告诉我们您的需求……",
+  modal_submit: "发送申请", modal_sending: "发送中……",
+  modal_success_h4: "申请已发送！", modal_success_p: "我们将在 24 小时内与您联系。",
+  modal_error: "出了点问题，请重试。"
+}
+};
+
+var currentLang = localStorage.getItem('widLang') || 'en';
+
+function applyLang(lang){
+  var dict = T[lang] || T.en;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key = el.getAttribute('data-i18n');
+    if (dict[key] === undefined) return;
+    // Campos que precisam de HTML (têm <br> ou <strong>)
+    if (dict[key].indexOf('<') !== -1) {
+      el.innerHTML = dict[key];
+    } else {
+      el.textContent = dict[key];
+    }
+  });
+  document.title = dict.page_title;
+  document.documentElement.lang = lang;
+  // Placeholders do formulário (não são [data-i18n] pois são atributos, não texto)
+  document.getElementById('modal_ph_name').placeholder = dict.ph_name;
+  document.getElementById('modal_ph_email').placeholder = dict.ph_email;
+  document.getElementById('modal_ph_company').placeholder = dict.ph_company;
+  document.getElementById('modal_ph_message').placeholder = dict.ph_message;
+  // Nota do vídeo — insere o nome do idioma (na própria língua) dentro da
+  // frase, pra ficar claro pra qual idioma o áudio traduzido por IA está
+  // disponível. Em inglês fica genérica, já que o vídeo original já é
+  // em inglês por padrão.
+  var noteEl = document.getElementById('videoAiNote');
+  if (lang !== 'en' && VIDEO_NOTE_TEMPLATES[lang]) {
+    noteEl.textContent = VIDEO_NOTE_TEMPLATES[lang](LANG_SELF_NAMES[lang]);
+  }
+  // Nota: o vídeo NÃO troca mais junto com esse dropdown — ele tem seu
+  // próprio seletor, separado, ao lado do player (ver setVideoLang()).
+}
+
+function setLang(lang){
+  currentLang = lang;
+  localStorage.setItem('widLang', lang);
+  applyLang(lang);
+}
+
+// Seletor de idioma exclusivo do vídeo — totalmente separado do idioma da
+// página. O vídeo sempre começa em inglês (o original), independente do
+// que estiver selecionado no dropdown principal do topo.
+function setVideoLang(lang){
+  var videoSrc = VIDEO_SOURCES[lang] || VIDEO_SOURCES.en;
+  var videoEl = document.getElementById('promoVideo');
+  var sourceEl = document.getElementById('promoVideoSource');
+  if (sourceEl.getAttribute('src') !== videoSrc) {
+    sourceEl.setAttribute('src', videoSrc);
+    videoEl.load();
+  }
+}
+
+document.getElementById('langSelect').value = currentLang;
+applyLang(currentLang);
+</script>
+
 </body>
 </html>
